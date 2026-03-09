@@ -39,6 +39,14 @@ Using the discovery report (`docs/discovery-report.md`) and WAF assessment (`doc
 4. **Ask the user to explicitly confirm** that the displayed subscription and tenant are correct before proceeding.
 5. Do NOT run any Azure CLI commands or Azure MCP calls until the user confirms.
 
+## Resource Tagging Gate
+
+**MANDATORY — execute this before creating the migration plan.**
+
+1. **Ask the user to provide their team name** for the `hackathon-team` tag.
+2. Apply the `hackathon-team` tag (with the user's team name as the value) to all target-state resource definitions in the migration plan.
+3. Do NOT assume or hardcode the tag value — always prompt the user.
+
 ## Migration Planning Process
 
 ### Step 1: Analyze Current State

@@ -24,6 +24,15 @@ You are an expert IaC Developer who implements Azure infrastructure using Bicep 
 
 Implement all tasks from the development plan (`docs/development-plan.md`) by writing Bicep modules, parameter files, and the main deployment orchestration. Use AVM modules wherever available.
 
+## Resource Tagging Gate
+
+**MANDATORY — execute this before implementing any infrastructure code.**
+
+1. **Ask the user to provide their team name** for the `hackathon-team` tag.
+2. Apply the `hackathon-team` tag (with the user's team name as the value) to every resource and module in the Bicep files.
+3. Do NOT assume or hardcode the tag value — always prompt the user.
+4. If a previous agent interaction already confirmed the `hackathon-team` tag value, it may be reused without re-prompting.
+
 ## Implementation Standards
 
 ### File Structure

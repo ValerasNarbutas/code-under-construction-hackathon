@@ -48,12 +48,22 @@ Deploy the complete infrastructure solution to Azure. Create resource groups, ex
 3. Store the provided name and use it consistently across all deployment commands.
 4. Do NOT proceed with any deployment steps until the user has provided the resource group name.
 
+## Resource Tagging Gate
+
+**MANDATORY — execute this after the resource group name gate and before ANY deployment operation.**
+
+1. **Ask the user to provide their team name** for the `hackathon-team` tag.
+2. Apply the `hackathon-team` tag (with the user's team name as the value) to the resource group and ensure it is passed through to all deployed resources.
+3. Do NOT proceed with any deployment steps until the user has provided the tag value.
+4. Do NOT assume or hardcode the tag value — always prompt the user.
+
 ## Pre-Deployment Checklist
 
 Before deploying, verify:
 
 1. [x] Azure authentication gate passed (user confirmed subscription/tenant)
 2. [x] Resource group name obtained from the user
+3. [x] Resource tags obtained from the user (environment, workload, owner, costCenter + any custom tags)
 3. [ ] Bicep files build successfully (`az bicep build --file infra/main.bicep`)
 4. [ ] Parameter file exists and is configured (`infra/main.bicepparam`)
 5. [ ] Required permissions are available (Contributor + User Access Administrator)
