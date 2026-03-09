@@ -10,9 +10,9 @@ Initialize your spec-driven project with your chosen tooling.
 ## Choose Your Tool
 
 ### Option A: Spec Kit
+Run from the repo root so Spec Kit registers its prompts and agents in this workspace.
 ```bash
-cd spec-driven
-specify init <your-app-name> --ai copilot --no-git
+specify init --here --ai copilot
 ```
 
 Then use these commands:
@@ -23,8 +23,8 @@ Then use these commands:
 - `/speckit.implement` — Implement from specs
 
 ### Option B: OpenSpec
+Run from the repo root so OpenSpec registers its prompts and agents in this workspace.
 ```bash
-cd spec-driven
 openspec init
 ```
 
@@ -34,6 +34,8 @@ Then use these commands:
 - `/opsx:archive` — Archive completed spec
 
 ## Discover Skills
+
+The `find-skills` skill is already installed. Use it to discover relevant skills, then install any you want.
 
 Search for skills relevant to your application domain:
 
@@ -58,4 +60,4 @@ Install any useful skills that are found.
 
 ## Next Step
 
-Proceed to `spec-3-specify` to write your application specifications.
+Proceed to writing specifications using your chosen spec tool commands.

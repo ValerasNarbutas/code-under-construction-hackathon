@@ -51,7 +51,7 @@ When generating architecture diagrams from discovered environments:
 ## Use Case 3: Spec-Driven — Methodology Guidelines
 
 ### Supported Tools (participant's choice)
-- **Spec Kit** (github/spec-kit): `specify init <name> --ai copilot --no-git`
+- **Spec Kit** (github/spec-kit): `specify init --here --ai copilot`
   - Commands: `/speckit.constitution`, `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, `/speckit.implement`
 - **OpenSpec** (Fission-AI/OpenSpec): `npm install -g @fission-ai/openspec@latest && openspec init`
   - Commands: `/opsx:propose <idea>`, `/opsx:apply`, `/opsx:archive`
@@ -151,12 +151,10 @@ discovery/                      # Use Case 2: Discovery output
     ├── discovery-report.md     # Executive report with Mermaid diagrams
     └── migration-plan.md       # PaaS migration plan (optional)
 
-spec-driven/                    # Use Case 3: Spec-Driven output
-├── docs/                       # Specifications and documentation
-├── src/                        # Application source code
-├── tests/                      # Playwright E2E tests
-└── infra/                      # Bicep IaC for Azure deployment
-    └── modules/                # Bicep modules
+# Use Case 3: Spec-Driven — folder structure is created by the tool:
+# Spec Kit:  specs/<feature>/  (spec.md, plan.md, tasks.md, contracts/)
+#            memory/            (constitution.md)
+# OpenSpec:  openspec/changes/<feature>/  (proposals, specs, design, tasks)
 ```
 
 ## Bicep Formatting

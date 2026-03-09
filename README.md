@@ -139,7 +139,6 @@ This repo includes a complete set of example agents, prompts, and skills that de
 | `reporter` | Report & diagram writer | Discovery |
 | `migration-planner` | PaaS migration planner | Discovery |
 | `spec-coach` | Spec-driven methodology coach | Spec-Driven |
-| `qa-engineer` | Playwright E2E tester | Spec-Driven |
 
 ### Example Prompts (`.github/prompts/`)
 
@@ -147,7 +146,7 @@ This repo includes a complete set of example agents, prompts, and skills that de
 |---|---|
 | **IaC** | `iac-1-architect` → `iac-2-review` → `iac-3-plan` → `iac-4-implement` → `iac-5-test` → `iac-6-document` → `iac-7-deploy` |
 | **Discovery** | `disc-1-discover` → `disc-2-assess` → `disc-3-report` → `disc-4-migration` → `disc-5-full-pipeline` |
-| **Spec-Driven** | `spec-1-brainstorm` → `spec-2-setup` → `spec-3-specify` → `spec-4-implement` → `spec-5-test` → `spec-6-deploy` |
+| **Spec-Driven** | `spec-1-brainstorm` → `spec-2-setup` → Spec Kit/OpenSpec commands |
 
 ### Copilot Instruction Files (`.github/instructions/`)
 

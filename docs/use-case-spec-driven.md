@@ -47,7 +47,7 @@ Answer these questions as a team:
 Think about which tools and spec-driven methodology you'll use:
 
 - [ ] **Which spec-driven tool will you use?**
-  - **Spec Kit** (Python-based): `specify init <name> --ai copilot --no-git`
+  - **Spec Kit** (Python-based): `specify init --here --ai copilot`
     - Commands: `/speckit.constitution`, `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, `/speckit.implement`
   - **OpenSpec** (Node.js-based): `openspec init`
     - Commands: `/opsx:propose <idea>`, `/opsx:apply`, `/opsx:archive`
@@ -55,50 +55,28 @@ Think about which tools and spec-driven methodology you'll use:
   - Playwright MCP — for running E2E tests against your app
   - Azure MCP — for deploying to Azure (App Service, Static Web Apps, etc.)
 - [ ] **Which skills do you need?**
-  - Are there domain-specific skills? Run `npx skills find <domain>` to discover
-  - Do you need a custom skill for your spec methodology?
+  - The `find-skills` skill is already installed — use it to discover and install skills
+  - Run `npx skills find <domain>` to discover
+  - Install any you need with `npx skills add <owner/repo@skill>`
 - [ ] **Configure your MCP servers** in `.vscode/mcp.json`
 
-### Phase 3: Design Your Agentic Workflow
+> **Important**: Run both Spec Kit and OpenSpec init from the **repo root**. They install prompts and agents that must be registered at the workspace root to be recognized.
 
-Plan the agents that will guide your spec-driven process:
+### Phase 3: Execute the Spec-Driven Workflow (No Custom Agents/Prompts Yet)
 
-- [ ] **What steps does your workflow need?** (e.g., brainstorm → setup → specify → implement → test → deploy)
-- [ ] **What agent handles each step?** Define a custom agent (`.github/agents/<name>.agent.md`) for each role
-- [ ] **What tools does each agent need?** (Playwright MCP for testing, Azure MCP for deployment)
-- [ ] **How do agents hand off to each other?** (e.g., specs feed into implementation, implementation feeds into testing)
-- [ ] **What does each agent output?** (e.g., user stories, specifications, working code, test results)
+After `spec-2-setup`, use the Spec Kit or OpenSpec commands for specify → implement → test → deploy.
+Do **not** create custom prompts or custom agents unless you truly need to extend the workflow beyond those steps.
 
-For each agent, create a `.agent.md` file in `.github/agents/` with:
-- A clear role description
-- The tools it needs access to
-- Handoffs to the next agent in the workflow
-- Detailed instructions on what it should produce
+Run the workflow in order and verify each step:
 
-> **Built-in help**: When you create or edit a `.agent.md` file, Copilot automatically loads the [agents instruction file](../.github/instructions/agents.instructions.md) with guidelines on frontmatter, tools, handoffs, and best practices.
-
-### Phase 4: Write Your Prompts
-
-For each step in your workflow, create a reusable prompt (`.github/prompts/<name>.prompt.md`):
-
-- [ ] **What should each prompt ask the agent to do?** Be specific about the app idea, features, and expected output
-- [ ] **What context does each prompt need?** (spec files, user stories, previous output)
-- [ ] **Number your prompts sequentially** so they're easy to run in order
-
-> **Built-in help**: When you create or edit a `.prompt.md` file, Copilot automatically loads the [prompt instruction file](../.github/instructions/prompt.instructions.md) with guidelines on frontmatter, structure, inputs, and output definitions.
-
-### Phase 5: Execute Your Workflow
-
-Run your prompts in order and verify each step:
-
-1. **Brainstorm** — Run your brainstorm prompt. Verify user stories and acceptance criteria are defined
+1. **Brainstorm** — Run the brainstorm prompt. Verify user stories and acceptance criteria are defined
 2. **Setup** — Initialize your spec-driven tool and discover relevant skills
-3. **Specify** — Run your specification prompt. Verify specs cover all core features
-4. **Implement** — Run your implementation prompt. Verify the app runs locally
-5. **Test** — Run your testing prompt. Verify Playwright E2E tests pass for each user story
-6. **Deploy** — Run your deploy prompt. Verify the app is live on Azure
+3. **Specify** — Run your spec tool commands. Verify specs cover all core features
+4. **Implement** — Run your spec tool commands. Verify the app runs locally
+5. **Test** — Write and run Playwright E2E tests. Verify each user story
+6. **Deploy** — Deploy using Azure MCP. Verify the app is live
 
-### Phase 6: Verify & Iterate
+### Phase 4: Verify & Iterate
 
 Review the quality of your outputs:
 
@@ -128,6 +106,54 @@ export SPECIFY_FEATURE="new-feature-name"
 ```
 
 Each feature follows the same cycle: **specify → implement → test → deploy**
+
+---
+
+## Copy/Paste Commands — Kanban Task Board (Drag-and-Drop)
+
+Use these ready-to-paste sequences in **Copilot Chat**. Run terminal commands from the **repo root**.
+
+### Spec Kit
+
+**Copilot Chat**:
+```
+spec-1-brainstorm
+We are building a Kanban-style task management app with drag-and-drop between columns.
+```
+
+**Terminal (repo root)**:
+```bash
+specify init --here --ai copilot
+npx skills find "kanban drag and drop"
+```
+
+**Copilot Chat**:
+```
+Use Spec Kit. Create specs for a Kanban board with Backlog, In Progress, and Done columns.
+Include drag-and-drop, task creation, editing, and persistence.
+Then run /speckit.specify, /speckit.plan, /speckit.tasks, and /speckit.implement.
+```
+
+### OpenSpec
+
+**Copilot Chat**:
+```
+spec-1-brainstorm
+We are building a Kanban-style task management app with drag-and-drop between columns.
+```
+
+**Terminal (repo root)**:
+```bash
+openspec init
+npx skills find "kanban drag and drop"
+```
+
+**Copilot Chat**:
+```
+Use OpenSpec. Propose and apply specs for a Kanban board with Backlog, In Progress, and Done columns.
+Include drag-and-drop, task creation, editing, and persistence.
+Then run /opsx:propose and /opsx:apply.
+```
 
 ---
 
@@ -164,8 +190,8 @@ This repo includes a **complete reference implementation** showing one way to so
 
 | What | Where | Purpose |
 |---|---|---|
-| Example agents | `.github/agents/spec-coach.agent.md`, `qa-engineer.agent.md`, `deployer.agent.md` | See how spec-driven agents are defined |
-| Example prompts | `.github/prompts/spec-1-brainstorm.prompt.md`, etc. | See how spec-driven prompts are structured |
+| Example agents | `.github/agents/spec-coach.agent.md` | See how a spec-driven agent is defined |
+| Example prompts | `.github/prompts/spec-1-brainstorm.prompt.md`, `spec-2-setup.prompt.md` | See the spec-driven prompts used in this guide |
 | Example skills | `.github/skills/spec-driven-guide/` | See how a spec methodology skill is documented |
 | Instruction files | `.github/instructions/` | Auto-loaded guidelines for writing agents, prompts, skills, and instructions |
 | Example MCP config | `.vscode/mcp.json` | See how Playwright and Azure MCP servers are configured |

@@ -1,6 +1,7 @@
 ---
 name: spec-coach
 description: "Use when: setting up spec-driven development, brainstorming app ideas, creating specifications, choosing between Spec Kit and OpenSpec, or when user says 'spec', 'brainstorm', 'specify', 'idea', or 'what should I build'"
+model: Auto (copilot)
 tools:
   - read
   - edit
@@ -45,9 +46,8 @@ Good brainstorm questions:
 
 #### Option A: Spec Kit (Python-based)
 ```bash
-# Initialize a new Spec Kit project inside spec-driven/
-cd spec-driven
-specify init <project-name> --ai copilot --no-git
+# Initialize Spec Kit in the current repo root
+specify init --here --ai copilot
 ```
 
 Key commands:
@@ -59,8 +59,7 @@ Key commands:
 
 #### Option B: OpenSpec (Node.js-based)
 ```bash
-# Initialize OpenSpec in the spec-driven directory
-cd spec-driven
+# Initialize OpenSpec in the repo root
 openspec init
 ```
 
@@ -133,7 +132,7 @@ export SPECIFY_FEATURE="dark-mode"
 ```
 
 **OpenSpec:**
-Features are automatically organized under `spec-driven/openspec/changes/<feature-name>/`
+Features are automatically organized under `openspec/changes/<feature-name>/`
 
 ## Constraints
 

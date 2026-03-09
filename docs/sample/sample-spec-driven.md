@@ -8,16 +8,16 @@
 
 | Asset | Location | Purpose |
 |---|---|---|
-| **Agents** | `.github/agents/` | `@spec-coach`, `@qa-engineer`, `@deployer` |
-| **Prompts** | `.github/prompts/` | `spec-1-brainstorm` through `spec-6-deploy` |
+| **Agents** | `.github/agents/` | `@spec-coach` |
+| **Prompts** | `.github/prompts/` | `spec-1-brainstorm`, `spec-2-setup` |
 | **Skills** | `.github/skills/` | `spec-driven-guide`, `find-skills` |
 | **MCP Servers** | `.vscode/mcp.json` | Playwright MCP (E2E testing), Azure MCP (deployment) |
 
 ## Agent Workflow
 
 ```
-@spec-coach → @spec-coach → @spec-coach → @spec-coach → @qa-engineer → @deployer
-(brainstorm)   (setup)       (specify)      (implement)    (test)          (deploy)
+@spec-coach → @spec-coach → Spec Kit/OpenSpec commands
+(brainstorm)   (setup)       (specify → implement → test → deploy)
 ```
 
 ---
@@ -87,6 +87,14 @@ Data Model:
 - [ ] Data model covers all features
 - [ ] Scope is realistic for a hackathon (not too ambitious)
 
+### Copy/Paste Commands — Kanban Task Board (Drag-and-Drop)
+
+Use these in **Copilot Chat**:
+```
+spec-1-brainstorm
+We are building a Kanban-style task management app with drag-and-drop between columns.
+```
+
 ---
 
 ## Step 2: Set Up Your Spec-Driven Project
@@ -99,7 +107,7 @@ This invokes `@spec-coach` to initialize your project tooling:
 
 ### Option A: Spec Kit (Python)
 ```bash
-specify init taskflow --ai copilot --no-git
+specify init --here --ai copilot
 ```
 Commands you'll use later:
 - `/speckit.constitution` — Set project constitution
@@ -111,7 +119,6 @@ Commands you'll use later:
 ### Option B: OpenSpec (Node.js)
 ```bash
 npm install -g @fission-ai/openspec@latest
-mkdir taskflow && cd taskflow
 openspec init
 ```
 Commands you'll use later:
@@ -119,7 +126,9 @@ Commands you'll use later:
 - `/opsx:apply` — Implement the proposal
 - `/opsx:archive` — Archive completed changes
 
-**Discover skills**:
+> **Important**: Run Spec Kit and OpenSpec init from the **repo root** so their prompts and agents are recognized in this workspace.
+
+**Discover skills** (the `find-skills` skill is already installed):
 ```bash
 npx skills find "task management"  # or your app's domain
 ```
@@ -129,13 +138,13 @@ npx skills find "task management"  # or your app's domain
 - [ ] Any relevant skills are installed
 - [ ] You can run the spec tool commands without errors
 
+> **From here on**: Use the Spec Kit or OpenSpec commands for specify → implement → test → deploy. Do not create custom prompts or agents unless you need to extend beyond those steps.
+
 ---
 
 ## Step 3: Write Your Specifications
 
-**Run prompt**: `spec-3-specify`
-
-This invokes `@spec-coach` to write specifications for each core feature:
+Use the Spec Kit or OpenSpec commands to write specifications for each core feature:
 
 **Key principle**: Specify WHAT to build, not HOW. Focus on behavior, not implementation details.
 
@@ -182,9 +191,7 @@ Data:
 
 ## Step 4: Generate the Implementation
 
-**Run prompt**: `spec-4-implement`
-
-This invokes `@spec-coach` to generate the application from your specifications:
+Generate the application from your specifications using your chosen spec tool:
 
 **Spec Kit workflow**:
 ```bash
@@ -221,9 +228,7 @@ npm run dev
 
 ## Step 5: Write and Run E2E Tests
 
-**Run prompt**: `spec-5-test`
-
-This invokes `@qa-engineer` using the Playwright MCP server to write and execute tests:
+Use the Playwright MCP server to write and execute tests:
 
 **What it does**:
 1. Initializes Playwright if not already set up: `npm init playwright@latest`
@@ -294,9 +299,7 @@ npx playwright show-report       # View HTML report
 
 ## Step 6: Deploy to Azure
 
-**Run prompt**: `spec-6-deploy`
-
-This invokes `@deployer` using the Azure MCP server to deploy your application:
+Use the Azure MCP server to deploy your application:
 
 **Deployment options** (the agent will recommend based on your app):
 
