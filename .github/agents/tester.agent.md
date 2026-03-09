@@ -1,6 +1,13 @@
 ---
 name: tester
 description: "Use when: testing infrastructure code, running bicep build, validating deployments, running what-if, fixing Bicep/Terraform errors, or when user says 'test', 'validate', 'check', 'fix errors', or 'what-if'"
+tools:
+  - read
+  - edit
+  - search
+  - execute
+  - web
+  - todo
 handoffs:
   - label: Generate Documentation
     agent: documenter

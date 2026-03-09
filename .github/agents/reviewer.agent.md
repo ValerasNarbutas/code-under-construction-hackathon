@@ -2,6 +2,11 @@
 name: reviewer
 description: "Use when: reviewing architecture, validating WAF/CAF compliance, auditing infrastructure design, assessing discovered environments, performing gap analysis, checking security gaps, or when user says 'review', 'validate', 'audit', 'assess', 'gap analysis', 'WAF review', or 'CAF check'"
 tools:
+  - read
+  - edit
+  - search
+  - web
+  - todo
   - learn/*
   - mermaidchart.vscode-mermaid-chart/mermaid-diagram-validator
   - mermaidchart.vscode-mermaid-chart/mermaid-diagram-preview

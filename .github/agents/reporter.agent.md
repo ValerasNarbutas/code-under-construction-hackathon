@@ -2,6 +2,12 @@
 name: reporter
 description: "Use when: generating discovery reports, creating architecture diagrams from discovered environments, synthesizing assessment findings, or when user says 'report', 'diagram', 'visualize', or 'summarize findings'"
 tools:
+  - read
+  - edit
+  - search
+  - web
+  - todo
+  - learn/*
   - mermaidchart.vscode-mermaid-chart/mermaid-diagram-validator
   - mermaidchart.vscode-mermaid-chart/mermaid-diagram-preview
   - mermaidchart.vscode-mermaid-chart/get_syntax_docs

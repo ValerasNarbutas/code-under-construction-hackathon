@@ -2,6 +2,11 @@
 name: architect
 description: "Use when: designing infrastructure architecture, creating architecture documents, generating Mermaid diagrams, planning Azure resource topology, greenfield deployments, or when user says 'design', 'architect', or 'architecture'"
 tools:
+  - read
+  - edit
+  - search
+  - web
+  - todo
   - learn/*
   - mermaidchart.vscode-mermaid-chart/mermaid-diagram-validator
   - mermaidchart.vscode-mermaid-chart/mermaid-diagram-preview

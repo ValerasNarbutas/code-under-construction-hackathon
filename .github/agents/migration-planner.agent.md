@@ -2,6 +2,12 @@
 name: migration-planner
 description: "Use when: planning PaaS migration, designing target architecture from discovered environment, creating cost assessments, or when user says 'migrate', 'modernize', 'PaaS', 'cost assessment', or 'target architecture'"
 tools:
+  - read
+  - edit
+  - search
+  - execute
+  - web
+  - todo
   - azure/*
   - learn/*
   - mermaidchart.vscode-mermaid-chart/mermaid-diagram-validator

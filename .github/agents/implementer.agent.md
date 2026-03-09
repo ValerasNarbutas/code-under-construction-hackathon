@@ -1,6 +1,13 @@
 ---
 name: implementer
 description: "Use when: implementing infrastructure code, writing Bicep or Terraform modules, creating IaC files, building Azure resources in code, or when user says 'implement', 'build', 'code', or 'create infrastructure'"
+tools:
+  - read
+  - edit
+  - search
+  - execute
+  - web
+  - todo
 handoffs:
   - label: Test Infrastructure
     agent: tester

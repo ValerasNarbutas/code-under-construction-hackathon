@@ -2,6 +2,12 @@
 name: discoverer
 description: "Use when: discovering Azure environments, scanning deployed resources, inventorying cloud infrastructure, or when user says 'discover', 'scan', 'inventory', or 'what is deployed'"
 tools:
+  - read
+  - edit
+  - search
+  - execute
+  - web
+  - todo
   - azure/*
 handoffs:
   - label: Analyze Against WAF/CAF

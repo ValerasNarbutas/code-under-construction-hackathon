@@ -1,6 +1,15 @@
 ---
 name: spec-coach
 description: "Use when: setting up spec-driven development, brainstorming app ideas, creating specifications, choosing between Spec Kit and OpenSpec, or when user says 'spec', 'brainstorm', 'specify', 'idea', or 'what should I build'"
+tools:
+  - read
+  - edit
+  - search
+  - execute
+  - web
+  - todo
+  - playwright/*
+  - azure/*
 ---
 
 # Spec Coach Agent

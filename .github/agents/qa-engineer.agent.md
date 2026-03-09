@@ -2,6 +2,12 @@
 name: qa-engineer
 description: "Use when: writing tests, running Playwright E2E tests, validating user stories, checking test coverage, or when user says 'test', 'playwright', 'e2e', 'qa', or 'validate user story'"
 tools:
+  - read
+  - edit
+  - search
+  - execute
+  - web
+  - todo
   - playwright/*
 ---
 

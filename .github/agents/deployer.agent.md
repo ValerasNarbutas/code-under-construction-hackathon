@@ -1,6 +1,14 @@
 ---
 name: deployer
 description: "Use when: deploying infrastructure to Azure, running az deployment, provisioning resources, executing azd up, or when user says 'deploy', 'provision', 'go live', 'push to Azure', or 'ship it'"
+tools:
+  - read
+  - edit
+  - search
+  - execute
+  - web
+  - todo
+  - azure/*
 handoffs:
   - label: Fix Implementation Issues
     agent: implementer

@@ -2,6 +2,11 @@
 name: documenter
 description: "Use when: generating documentation, creating deployment guides, writing project docs, updating README, creating runbooks, or when user says 'document', 'docs', 'readme', 'documentation', or 'runbook'"
 tools:
+  - read
+  - edit
+  - search
+  - web
+  - todo
   - mermaidchart.vscode-mermaid-chart/mermaid-diagram-validator
   - mermaidchart.vscode-mermaid-chart/mermaid-diagram-preview
   - mermaidchart.vscode-mermaid-chart/get_syntax_docs

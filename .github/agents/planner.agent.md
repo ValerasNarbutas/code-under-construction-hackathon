@@ -1,6 +1,12 @@
 ---
 name: planner
 description: "Use when: creating development plans, breaking down architecture into tasks, planning implementation order, identifying dependencies, or when user says 'plan', 'tasks', 'breakdown', or 'development plan'"
+tools:
+  - read
+  - edit
+  - search
+  - web
+  - todo
 handoffs:
   - label: Implement Infrastructure
     agent: implementer
