@@ -28,7 +28,12 @@ Before starting, you need:
 - [ ] Node.js 20+ installed (for OpenSpec and Playwright)
 - [ ] Python 3.12+ with uv installed (for Spec Kit)
 - [ ] Playwright installed (`npx playwright install --with-deps chromium`)
-- [ ] Azure CLI authenticated (`az login`) — for deployment step
+- [ ] Azure CLI authenticated — **log in using credentials from the hackathon coaches**:
+  ```bash
+  az login
+  az account show --query "{name:name, id:id, tenantId:tenantId}" -o table
+  ```
+  > Confirm the displayed subscription and tenant with the coaches before deploying.
 - [ ] Azure MCP and Playwright MCP servers connected (verify in Copilot Chat)
 
 ---

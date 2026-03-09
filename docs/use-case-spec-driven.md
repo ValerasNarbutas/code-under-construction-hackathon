@@ -12,6 +12,22 @@ Design, build, and execute your own **spec-driven agentic workflow** — a set o
 - Python 3.12+ with uv (for Spec Kit)
 - VS Code with GitHub Copilot (or Codespaces)
 
+### Azure Login (Required for Deployment)
+
+If you plan to deploy your app to Azure, log in first using the credentials provided by the hackathon coaches:
+
+```bash
+az login
+```
+
+Verify you are on the correct subscription:
+
+```bash
+az account show --query "{name:name, id:id, tenantId:tenantId}" -o table
+```
+
+> **Important**: Confirm the displayed subscription and tenant with the hackathon coaches before deploying.
+
 ---
 
 ## Participant Guide

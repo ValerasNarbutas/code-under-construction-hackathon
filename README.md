@@ -42,6 +42,22 @@ You decide what agents you need, what each one does, how they hand off to each o
 
 > **Tip**: Open this repo in **GitHub Codespaces** — the devcontainer pre-installs all tools automatically!
 
+### Azure Login (Required Before Exercises)
+
+Before starting any exercise, log in to Azure using the credentials provided by the hackathon coaches:
+
+```bash
+az login
+```
+
+After logging in, verify you are on the correct subscription:
+
+```bash
+az account show --query "{name:name, id:id, tenantId:tenantId}" -o table
+```
+
+> **Important**: Confirm with the hackathon coaches that the displayed subscription and tenant are correct before proceeding.
+
 ---
 
 ## Quick Start

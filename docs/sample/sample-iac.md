@@ -21,6 +21,19 @@
 
 ---
 
+## Prerequisites
+
+Before starting, log in to Azure using the credentials provided by the hackathon coaches:
+
+```bash
+az login
+az account show --query "{name:name, id:id, tenantId:tenantId}" -o table
+```
+
+> **Important**: Confirm the displayed subscription and tenant with the hackathon coaches before proceeding.
+
+---
+
 ## Step 1: Design the Architecture
 
 **Run prompt**: `iac-1-architect`

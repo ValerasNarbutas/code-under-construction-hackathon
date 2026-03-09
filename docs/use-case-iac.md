@@ -12,6 +12,22 @@ Design, build, and execute your own **agentic workflow template** — a set of c
 - Azure CLI with Bicep installed (`az bicep install`)
 - VS Code with GitHub Copilot (or Codespaces)
 
+### Azure Login (Required First)
+
+Log in to Azure using the credentials provided by the hackathon coaches:
+
+```bash
+az login
+```
+
+Verify you are on the correct subscription:
+
+```bash
+az account show --query "{name:name, id:id, tenantId:tenantId}" -o table
+```
+
+> **Important**: Confirm the displayed subscription and tenant with the hackathon coaches before proceeding with any exercises.
+
 ---
 
 ## Participant Guide
