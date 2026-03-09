@@ -6,6 +6,7 @@ tools:
   - edit
   - search
   - execute
+  - shell
   - web
   - todo
   - azure/*
@@ -38,15 +39,25 @@ Deploy the complete infrastructure solution to Azure. Create resource groups, ex
 4. **Ask the user to explicitly confirm** that the displayed subscription and tenant are correct before proceeding.
 5. Do NOT continue with any Azure operations until the user confirms.
 
+## Resource Group Name Gate
+
+**MANDATORY — execute this after the authentication gate and before ANY deployment operation.**
+
+1. **Ask the user to provide the resource group name** to which the resources will be deployed.
+2. Do NOT assume or hardcode a resource group name — always prompt the user.
+3. Store the provided name and use it consistently across all deployment commands.
+4. Do NOT proceed with any deployment steps until the user has provided the resource group name.
+
 ## Pre-Deployment Checklist
 
 Before deploying, verify:
 
 1. [x] Azure authentication gate passed (user confirmed subscription/tenant)
-2. [ ] Bicep files build successfully (`az bicep build --file infra/main.bicep`)
-3. [ ] Parameter file exists and is configured (`infra/main.bicepparam`)
-4. [ ] Required permissions are available (Contributor + User Access Administrator)
-5. [ ] Target region has capacity for requested resources
+2. [x] Resource group name obtained from the user
+3. [ ] Bicep files build successfully (`az bicep build --file infra/main.bicep`)
+4. [ ] Parameter file exists and is configured (`infra/main.bicepparam`)
+5. [ ] Required permissions are available (Contributor + User Access Administrator)
+6. [ ] Target region has capacity for requested resources
 
 ## Deployment Process
 
@@ -60,9 +71,10 @@ az account set --subscription "<subscription-id>"
 ```
 
 ### Step 2: Create Resource Group
+Use the resource group name provided by the user in the Resource Group Name Gate:
 ```bash
 az group create \
-  --name rg-todo-dev-westeurope \
+  --name <resource-group-name> \
   --location westeurope \
   --tags environment=dev workload=todo owner=hackathon costCenter=hackathon
 ```
@@ -70,7 +82,7 @@ az group create \
 ### Step 3: Preview Deployment (What-If)
 ```bash
 az deployment group what-if \
-  --resource-group rg-todo-dev-westeurope \
+  --resource-group <resource-group-name> \
   --template-file infra/main.bicep \
   --parameters infra/main.bicepparam
 ```
@@ -80,7 +92,7 @@ Review the output. Confirm the expected resources will be created.
 ### Step 4: Execute Deployment
 ```bash
 az deployment group create \
-  --resource-group rg-todo-dev-westeurope \
+  --resource-group <resource-group-name> \
   --template-file infra/main.bicep \
   --parameters infra/main.bicepparam \
   --name "hackathon-deploy-$(date +%Y%m%d-%H%M%S)"
@@ -90,24 +102,24 @@ az deployment group create \
 ```bash
 # List deployed resources
 az resource list \
-  --resource-group rg-todo-dev-westeurope \
+  --resource-group <resource-group-name> \
   --output table
 
 # Verify Web App is running
 az webapp show \
-  --resource-group rg-todo-dev-westeurope \
+  --resource-group <resource-group-name> \
   --name app-todo-dev-westeurope \
   --query "state" --output tsv
 
 # Verify SQL Server private endpoint
 az network private-endpoint show \
-  --resource-group rg-todo-dev-westeurope \
+  --resource-group <resource-group-name> \
   --name pep-sql-dev-westeurope \
   --query "privateLinkServiceConnections[0].privateLinkServiceConnectionState.status" --output tsv
 
 # Verify SQL public access is disabled
 az sql server show \
-  --resource-group rg-todo-dev-westeurope \
+  --resource-group <resource-group-name> \
   --name sql-todo-dev-westeurope \
   --query "publicNetworkAccess" --output tsv
 ```
@@ -132,12 +144,12 @@ If deployment fails:
 ```bash
 # View deployment error details
 az deployment group show \
-  --resource-group rg-todo-dev-westeurope \
+  --resource-group <resource-group-name> \
   --name <deployment-name> \
   --query "properties.error"
 
 # Delete the resource group to start fresh (after confirmation)
-# az group delete --name rg-todo-dev-westeurope --yes --no-wait
+# az group delete --name <resource-group-name> --yes --no-wait
 ```
 
 ## Constraints

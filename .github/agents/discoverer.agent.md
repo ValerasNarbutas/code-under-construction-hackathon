@@ -6,6 +6,7 @@ tools:
   - edit
   - search
   - execute
+  - shell
   - web
   - todo
   - azure/*
@@ -37,9 +38,15 @@ Connect to an Azure subscription or resource group, enumerate all deployed resou
 ## Discovery Process
 
 ### Step 1: Identify Scope
-Ask the user for:
+
+**MANDATORY — the resource group name must be obtained before any discovery begins.**
+
+1. **Ask the user to provide the resource group name** where the resources to discover are located.
+2. Do NOT assume or hardcode a resource group name — always prompt the user.
+3. Do NOT proceed with any discovery steps until the user has provided the resource group name.
+
+Additionally, ask the user for:
 - Azure subscription ID or name (pre-populated from authentication gate)
-- Specific resource group(s) to scan (or scan all resource groups)
 - Any known workload name or tags to filter by
 
 ### Step 2: Enumerate Resources

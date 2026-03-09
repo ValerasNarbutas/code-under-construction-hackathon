@@ -6,6 +6,7 @@ tools:
   - edit
   - search
   - execute
+  - shell
   - web
   - todo
   - azure/*
