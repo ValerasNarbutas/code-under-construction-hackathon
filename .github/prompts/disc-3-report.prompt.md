@@ -9,8 +9,8 @@ Synthesize the discovery inventory and WAF assessment into a polished executive 
 
 ## Input
 
-- Read `docs/discovery-inventory.md` — resource inventory
-- Read `docs/waf-assessment.md` — WAF/CAF assessment
+- Read `discovery/docs/discovery-inventory.md` — resource inventory
+- Read `discovery/docs/waf-assessment.md` — WAF/CAF assessment
 
 ## Report Requirements
 
@@ -36,7 +36,7 @@ Synthesize the discovery inventory and WAF assessment into a polished executive 
 
 ## Expected Output
 
-Create `docs/discovery-report.md` with the complete executive report and embedded Mermaid diagrams.
+Create `discovery/docs/discovery-report.md` with the complete executive report and embedded Mermaid diagrams.
 
 ## Next Step (Optional)
 

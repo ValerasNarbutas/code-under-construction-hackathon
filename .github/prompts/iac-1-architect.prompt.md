@@ -26,7 +26,7 @@ Create a greenfield infrastructure architecture for the following Azure workload
 
 ## Expected Output
 
-Create `docs/architecture.md` containing:
+Create `iac/docs/architecture.md` containing:
 1. Executive summary
 2. Architecture diagram (Mermaid)
 3. Network topology diagram (Mermaid)

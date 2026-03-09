@@ -52,14 +52,14 @@ npx playwright test
 npx playwright test --ui
 
 # Run specific test file
-npx playwright test tests/todo.spec.ts
+npx playwright test spec-driven/tests/todo.spec.ts
 ```
 
 Or use the Playwright MCP server to run tests interactively through Copilot.
 
 ## Expected Output
 
-1. Playwright test files in `tests/` directory
+1. Playwright test files in `spec-driven/tests/` directory
 2. All tests passing for core user stories
 3. Test report showing pass/fail status
 

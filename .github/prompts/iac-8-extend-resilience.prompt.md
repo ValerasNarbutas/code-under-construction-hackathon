@@ -5,7 +5,7 @@ description: 'Extend the architecture with WAF resilience patterns — zone redu
 
 # Step 8 (OPTIONAL): Extend with Resilience
 
-Extend the existing architecture in `docs/architecture.md` with **WAF Reliability pillar** enhancements.
+Extend the existing architecture in `iac/docs/architecture.md` with **WAF Reliability pillar** enhancements.
 
 ## Resilience Enhancements to Add
 
@@ -18,7 +18,7 @@ Extend the existing architecture in `docs/architecture.md` with **WAF Reliabilit
 
 ## Expected Output
 
-Update `docs/architecture.md` with:
+Update `iac/docs/architecture.md` with:
 - New resilience section with Mermaid diagrams
 - Updated WAF pillar analysis reflecting resilience improvements
 - Additional tasks for the development plan

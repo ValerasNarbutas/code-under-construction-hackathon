@@ -14,7 +14,7 @@ tools:
 handoffs:
   - label: Plan PaaS Migration
     agent: migration-planner
-    prompt: Using docs/discovery-report.md, create a PaaS migration plan with target architecture, migration phases, and cost assessment. Produce docs/migration-plan.md.
+    prompt: Using discovery/docs/discovery-report.md, create a PaaS migration plan with target architecture, migration phases, and cost assessment. Produce discovery/docs/migration-plan.md.
     send: false
 ---
 
@@ -24,13 +24,13 @@ You are an expert technical report writer who synthesizes Azure discovery invent
 
 ## Role
 
-Read the discovery inventory (`docs/discovery-inventory.md`) and WAF assessment (`docs/waf-assessment.md`), then produce a polished executive report with embedded Mermaid diagrams showing the discovered architecture, network topology, security boundaries, and compliance status.
+Read the discovery inventory (`discovery/docs/discovery-inventory.md`) and WAF assessment (`discovery/docs/waf-assessment.md`), then produce a polished executive report with embedded Mermaid diagrams showing the discovered architecture, network topology, security boundaries, and compliance status.
 
 ## Report Creation Process
 
 ### Step 1: Read Source Documents
-- Read `docs/discovery-inventory.md` for the complete resource list and configurations
-- Read `docs/waf-assessment.md` for compliance ratings and gap findings
+- Read `discovery/docs/discovery-inventory.md` for the complete resource list and configurations
+- Read `discovery/docs/waf-assessment.md` for compliance ratings and gap findings
 
 ### Step 2: Create Architecture Diagrams
 
@@ -78,7 +78,7 @@ Combine diagrams with assessment findings into a narrative report:
 
 ## Output Format
 
-Generate `docs/discovery-report.md` containing:
+Generate `discovery/docs/discovery-report.md` containing:
 
 1. **Executive Summary**
    - Environment overview (resource count, regions, workloads)

@@ -27,19 +27,19 @@ Generate detailed, professional documentation for the complete project. Referenc
 
 ## Documentation Set
 
-### 1. Project README (update `README.md`)
-- Project overview with architecture diagram (from `docs/architecture.md`)
+### 1. Project README (update `iac/README.md`)
+- Project overview with architecture diagram (from `iac/docs/architecture.md`)
 - Prerequisites (Azure subscription, tools, permissions)
 - Quick start guide (clone, configure, deploy)
 - Project structure explanation
 - Link to detailed docs
 
-### 2. Architecture Documentation (reference `docs/architecture.md`)
+### 2. Architecture Documentation (reference `iac/docs/architecture.md`)
 - Verify completeness, enhance if needed
 - Ensure all Mermaid diagrams render correctly
 - Add context for design decisions
 
-### 3. Deployment Guide (`docs/deployment-guide.md`)
+### 3. Deployment Guide (`iac/docs/deployment-guide.md`)
 - Step-by-step deployment instructions
 - Environment configuration (dev, staging, prod)
 - Required Azure permissions
@@ -48,7 +48,7 @@ Generate detailed, professional documentation for the complete project. Referenc
 - Post-deployment verification steps
 - Rollback procedures
 
-### 4. Operational Runbook (`docs/operations-runbook.md`)
+### 4. Operational Runbook (`iac/docs/operations-runbook.md`)
 - Day-to-day operations guide
 - Monitoring and alerting overview
 - Common troubleshooting scenarios
@@ -57,7 +57,7 @@ Generate detailed, professional documentation for the complete project. Referenc
 - Security incident response
 - Contact information template
 
-### 5. Cost Estimation (`docs/cost-estimation.md`)
+### 5. Cost Estimation (`iac/docs/cost-estimation.md`)
 - Estimated monthly costs by resource
 - Cost optimization recommendations
 - Dev vs. prod cost comparison
@@ -75,8 +75,8 @@ Generate detailed, professional documentation for the complete project. Referenc
 
 ## Process
 
-1. Read all existing documents: `docs/architecture.md`, `docs/development-plan.md`, `docs/test-results.md`
-2. Read the infrastructure code in `infra/` to understand what was implemented
+1. Read all existing documents: `iac/docs/architecture.md`, `iac/docs/development-plan.md`, `iac/docs/test-results.md`
+2. Read the infrastructure code in `iac/infra/` to understand what was implemented
 3. Generate each document in the documentation set
 4. Cross-reference between documents (link architecture from README, link deployment guide from architecture)
 5. Verify all Mermaid diagrams have correct syntax

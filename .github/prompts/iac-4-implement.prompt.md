@@ -5,12 +5,12 @@ description: 'Implement all infrastructure tasks from the development plan using
 
 # Step 4: Implement Infrastructure
 
-Implement all tasks defined in `docs/development-plan.md` using Bicep with Azure Verified Modules (AVM).
+Implement all tasks defined in `iac/docs/development-plan.md` using Bicep with Azure Verified Modules (AVM).
 
 ## Implementation Guide
 
-1. Read `docs/development-plan.md` for the complete task list
-2. Read `docs/architecture.md` for the target architecture and AVM module references
+1. Read `iac/docs/development-plan.md` for the complete task list
+2. Read `iac/docs/architecture.md` for the target architecture and AVM module references
 3. Implement tasks in dependency order:
    - **Layer 0**: Foundation (parameters, variables, shared config)
    - **Layer 1**: Networking (VNet, subnets, NSGs)
@@ -24,7 +24,7 @@ Implement all tasks defined in `docs/development-plan.md` using Bicep with Azure
 ## File Structure to Create
 
 ```
-infra/
+iac/infra/
 ├── main.bicep              # Main deployment orchestration
 ├── main.bicepparam         # Parameter file
 ├── modules/

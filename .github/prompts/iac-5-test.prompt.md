@@ -5,16 +5,16 @@ description: 'Execute all infrastructure tests — bicep build, linting, what-if
 
 # Step 5: Test Infrastructure
 
-Execute all validation tests on the infrastructure code in `infra/` and fix any errors until all checks pass.
+Execute all validation tests on the infrastructure code in `iac/infra/` and fix any errors until all checks pass.
 
 ## Test Execution Order
 
 ### 1. Syntax Validation
 ```bash
-az bicep build --file infra/modules/networking.bicep
-az bicep build --file infra/modules/database.bicep
-az bicep build --file infra/modules/webapp.bicep
-az bicep build --file infra/main.bicep
+az bicep build --file iac/infra/modules/networking.bicep
+az bicep build --file iac/infra/modules/database.bicep
+az bicep build --file iac/infra/modules/webapp.bicep
+az bicep build --file iac/infra/main.bicep
 ```
 
 ### 2. Linting
@@ -34,8 +34,8 @@ Verify in the code:
 ```bash
 az deployment group what-if \
   --resource-group rg-todo-dev-westeurope \
-  --template-file infra/main.bicep \
-  --parameters infra/main.bicepparam
+  --template-file iac/infra/main.bicep \
+  --parameters iac/infra/main.bicepparam
 ```
 
 ## Requirements
@@ -43,4 +43,4 @@ az deployment group what-if \
 - Fix ALL errors — do not skip any failing test
 - Re-run tests after each fix to verify
 - Document all issues found and fixes applied
-- Create `docs/test-results.md` with the complete test report
+- Create `iac/docs/test-results.md` with the complete test report

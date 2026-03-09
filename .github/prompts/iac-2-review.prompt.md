@@ -5,7 +5,7 @@ description: 'Review the proposed architecture against Azure WAF and CAF princip
 
 # Step 2: Review Architecture
 
-Review the proposed architecture documented in `docs/architecture.md`.
+Review the proposed architecture documented in `iac/docs/architecture.md`.
 
 ## Review Scope
 
@@ -16,7 +16,7 @@ Review the proposed architecture documented in `docs/architecture.md`.
 
 ## Expected Output
 
-Create `docs/architecture-review.md` containing:
+Create `iac/docs/architecture-review.md` containing:
 1. Review summary with health score (0-100%)
 2. WAF compliance matrix with ratings per pillar
 3. Security findings (Critical/High/Medium/Low)

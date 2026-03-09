@@ -20,8 +20,8 @@ Deploy the complete infrastructure solution to Azure.
 
 - **Resource Group**: `rg-todo-dev-westeurope`
 - **Location**: `westeurope`
-- **Template**: `infra/main.bicep`
-- **Parameters**: `infra/main.bicepparam`
+- **Template**: `iac/infra/main.bicep`
+- **Parameters**: `iac/infra/main.bicepparam`
 
 ## Verification Checklist
 

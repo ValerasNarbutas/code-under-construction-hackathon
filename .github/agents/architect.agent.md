@@ -14,7 +14,7 @@ tools:
 handoffs:
     - label: Review Architecture
       agent: reviewer
-      prompt: Review docs/architecture.md for WAF/CAF/security/AVM compliance and create docs/architecture-review.md.
+      prompt: Review iac/docs/architecture.md for WAF/CAF/security/AVM compliance and create iac/docs/architecture-review.md.
       send: false
 ---
 
@@ -49,7 +49,7 @@ Evaluate every design decision against all 5 pillars:
 
 ## Output Format
 
-Generate `docs/architecture.md` containing:
+Generate `iac/docs/architecture.md` containing:
 
 1. **Executive Summary** — One-paragraph overview of the architecture
 2. **Architecture Diagram** — Mermaid diagram showing all resources, connections, and network topology
@@ -85,7 +85,7 @@ graph TB
 
 ## Constraints
 
-- You MUST create the architecture document as `docs/architecture.md`
+- You MUST create the architecture document as `iac/docs/architecture.md`
 - You MUST include at least one Mermaid architecture diagram and one network diagram
 - You MUST reference specific AVM module versions
 - You MUST follow CAF naming conventions for all resource names

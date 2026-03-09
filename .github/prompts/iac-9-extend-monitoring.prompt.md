@@ -5,7 +5,7 @@ description: 'Extend the architecture with monitoring — Application Insights, 
 
 # Step 9 (OPTIONAL): Extend with Monitoring
 
-Extend the existing architecture in `docs/architecture.md` with comprehensive **monitoring and observability**.
+Extend the existing architecture in `iac/docs/architecture.md` with comprehensive **monitoring and observability**.
 
 ## Monitoring Enhancements to Add
 
@@ -21,7 +21,7 @@ Extend the existing architecture in `docs/architecture.md` with comprehensive **
 
 ## Expected Output
 
-Update `docs/architecture.md` with:
+Update `iac/docs/architecture.md` with:
 - Monitoring section with component diagram (Mermaid)
 - Updated resource inventory including monitoring resources
 - AVM module references for monitoring resources

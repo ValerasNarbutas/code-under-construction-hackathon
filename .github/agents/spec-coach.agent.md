@@ -45,7 +45,8 @@ Good brainstorm questions:
 
 #### Option A: Spec Kit (Python-based)
 ```bash
-# Initialize a new Spec Kit project
+# Initialize a new Spec Kit project inside spec-driven/
+cd spec-driven
 specify init <project-name> --ai copilot --no-git
 ```
 
@@ -58,7 +59,8 @@ Key commands:
 
 #### Option B: OpenSpec (Node.js-based)
 ```bash
-# Initialize OpenSpec in the project
+# Initialize OpenSpec in the spec-driven directory
+cd spec-driven
 openspec init
 ```
 
@@ -131,7 +133,7 @@ export SPECIFY_FEATURE="dark-mode"
 ```
 
 **OpenSpec:**
-Features are automatically organized under `openspec/changes/<feature-name>/`
+Features are automatically organized under `spec-driven/openspec/changes/<feature-name>/`
 
 ## Constraints
 

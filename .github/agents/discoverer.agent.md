@@ -13,7 +13,7 @@ tools:
 handoffs:
   - label: Analyze Against WAF/CAF
     agent: reviewer
-    prompt: Analyze docs/discovery-inventory.md against WAF pillars and CAF conventions using Learn MCP. Produce docs/waf-assessment.md.
+    prompt: Analyze discovery/docs/discovery-inventory.md against WAF pillars and CAF conventions using Learn MCP. Produce discovery/docs/waf-assessment.md.
     send: false
 ---
 
@@ -102,7 +102,7 @@ For each discovered resource, capture:
 
 ## Output Format
 
-Generate `docs/discovery-inventory.md` containing:
+Generate `discovery/docs/discovery-inventory.md` containing:
 
 1. **Discovery Summary** — Subscription name, scan date, total resource count by type
 2. **Resource Group Overview** — Table of all resource groups with location, resource count, tags

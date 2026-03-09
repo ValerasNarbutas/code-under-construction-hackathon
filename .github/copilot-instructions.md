@@ -121,19 +121,42 @@ When designing or reviewing infrastructure, consider all 5 pillars:
 
 ## File Structure
 
+Each use case produces output in its own directory to avoid conflicts:
+
 ```
-infra/
-├── main.bicep              # Main deployment orchestration
-├── main.bicepparam         # Parameter file
-├── modules/
-│   ├── networking.bicep    # VNet, Subnets, NSGs
-│   ├── database.bicep      # SQL Server, SQL Database, Private Endpoint
-│   ├── webapp.bicep        # App Service Plan, Web App
-│   └── monitoring.bicep    # Log Analytics, App Insights (optional)
-docs/
-├── architecture.md         # Architecture document with Mermaid diagrams
-├── development-plan.md     # Task breakdown for implementation
-└── images/                 # Diagrams and screenshots
+iac/                            # Use Case 1: IaC output
+├── README.md                   # Project README
+├── docs/
+│   ├── architecture.md         # Architecture document with Mermaid diagrams
+│   ├── architecture-review.md  # WAF/CAF review findings
+│   ├── development-plan.md     # Task breakdown for implementation
+│   ├── test-results.md         # Bicep validation results
+│   ├── deployment-guide.md     # Deployment instructions
+│   ├── operations-runbook.md   # Operations guide
+│   ├── cost-estimation.md      # Cost estimates
+│   └── images/                 # Diagrams and screenshots
+├── infra/
+│   ├── main.bicep              # Main deployment orchestration
+│   ├── main.bicepparam         # Parameter file
+│   └── modules/
+│       ├── networking.bicep    # VNet, Subnets, NSGs
+│       ├── database.bicep      # SQL Server, SQL Database, Private Endpoint
+│       ├── webapp.bicep        # App Service Plan, Web App
+│       └── monitoring.bicep    # Log Analytics, App Insights (optional)
+
+discovery/                      # Use Case 2: Discovery output
+└── docs/
+    ├── discovery-inventory.md  # Resource inventory
+    ├── waf-assessment.md       # WAF/CAF compliance assessment
+    ├── discovery-report.md     # Executive report with Mermaid diagrams
+    └── migration-plan.md       # PaaS migration plan (optional)
+
+spec-driven/                    # Use Case 3: Spec-Driven output
+├── docs/                       # Specifications and documentation
+├── src/                        # Application source code
+├── tests/                      # Playwright E2E tests
+└── infra/                      # Bicep IaC for Azure deployment
+    └── modules/                # Bicep modules
 ```
 
 ## Bicep Formatting

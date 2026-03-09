@@ -10,7 +10,7 @@ tools:
 handoffs:
   - label: Implement Infrastructure
     agent: implementer
-    prompt: Implement tasks from docs/development-plan.md using AVM-based Bicep modules and create/update infra files.
+    prompt: Implement tasks from iac/docs/development-plan.md using AVM-based Bicep modules and create/update iac/infra files.
     send: false
 ---
 
@@ -25,7 +25,7 @@ Read the architecture document and create a detailed development plan with order
 ## Planning Process
 
 ### Step 1: Analyze Architecture
-Read `docs/architecture.md` and identify:
+Read `iac/docs/architecture.md` and identify:
 - All resources to be created
 - Network dependencies (what must exist before other resources)
 - Security components (NSGs, private endpoints, managed identities)
@@ -59,7 +59,7 @@ Acceptance Criteria: [how to verify the task is complete]
 
 ## Output Format
 
-Generate `docs/development-plan.md` containing:
+Generate `iac/docs/development-plan.md` containing:
 
 1. **Overview** — Summary of the plan with total task count and estimated layers
 2. **Dependency Graph** — Mermaid diagram showing task dependencies
@@ -71,7 +71,7 @@ Generate `docs/development-plan.md` containing:
 ## Constraints
 
 - Tasks must follow the dependency order — networking before compute, compute before private endpoints
-- Each task must map to a specific file in the `infra/` directory structure
+- Each task must map to a specific file in the `iac/infra/` directory structure
 - Tasks must be granular enough for a single implementation session
 - Include CI/CD pipeline tasks, not just infrastructure
 - Include testing tasks with specific commands to run

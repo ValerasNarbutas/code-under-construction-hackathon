@@ -13,7 +13,7 @@ tools:
 handoffs:
   - label: Fix Implementation Issues
     agent: implementer
-    prompt: Address deployment issues from the latest run and update infra code and configuration.
+    prompt: Address deployment issues from the latest run and update iac/infra code and configuration.
     send: false
   - label: Re-run Validation
     agent: tester
@@ -64,8 +64,8 @@ Before deploying, verify:
 1. [x] Azure authentication gate passed (user confirmed subscription/tenant)
 2. [x] Resource group name obtained from the user
 3. [x] Resource tags obtained from the user (environment, workload, owner, costCenter + any custom tags)
-3. [ ] Bicep files build successfully (`az bicep build --file infra/main.bicep`)
-4. [ ] Parameter file exists and is configured (`infra/main.bicepparam`)
+3. [ ] Bicep files build successfully (`az bicep build --file iac/infra/main.bicep`)
+4. [ ] Parameter file exists and is configured (`iac/infra/main.bicepparam`)
 5. [ ] Required permissions are available (Contributor + User Access Administrator)
 6. [ ] Target region has capacity for requested resources
 
@@ -93,8 +93,8 @@ az group create \
 ```bash
 az deployment group what-if \
   --resource-group <resource-group-name> \
-  --template-file infra/main.bicep \
-  --parameters infra/main.bicepparam
+  --template-file iac/infra/main.bicep \
+  --parameters iac/infra/main.bicepparam
 ```
 
 Review the output. Confirm the expected resources will be created.
@@ -103,8 +103,8 @@ Review the output. Confirm the expected resources will be created.
 ```bash
 az deployment group create \
   --resource-group <resource-group-name> \
-  --template-file infra/main.bicep \
-  --parameters infra/main.bicepparam \
+  --template-file iac/infra/main.bicep \
+  --parameters iac/infra/main.bicepparam \
   --name "hackathon-deploy-$(date +%Y%m%d-%H%M%S)"
 ```
 

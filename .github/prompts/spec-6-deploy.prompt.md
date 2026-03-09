@@ -59,6 +59,8 @@ az containerapp create \
 
 Or use the Azure MCP server through Copilot for guided deployment.
 
+If your deployment requires Bicep infrastructure, place files in `spec-driven/infra/` with modules in `spec-driven/infra/modules/`.
+
 ## Post-Deployment Verification
 
 - [ ] Application is accessible at the Azure URL

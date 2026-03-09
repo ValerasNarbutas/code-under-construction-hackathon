@@ -9,7 +9,7 @@ Read the discovery inventory and assess the environment against Microsoft's Well
 
 ## Input
 
-Read `docs/discovery-inventory.md` — the resource inventory produced by the discoverer.
+Read `discovery/docs/discovery-inventory.md` — the resource inventory produced by the discoverer.
 
 ## Assessment Scope
 
@@ -33,7 +33,7 @@ Read `docs/discovery-inventory.md` — the resource inventory produced by the di
 
 ## Expected Output
 
-Create `docs/waf-assessment.md` containing:
+Create `discovery/docs/waf-assessment.md` containing:
 1. Assessment summary with overall health score
 2. WAF compliance matrix (5 pillars with ratings)
 3. Detailed analysis per pillar with findings and remediation steps

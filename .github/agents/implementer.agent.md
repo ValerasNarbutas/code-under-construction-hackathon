@@ -12,7 +12,7 @@ tools:
 handoffs:
   - label: Test Infrastructure
     agent: tester
-    prompt: Run syntax, lint, security, and what-if validation for infra code and create docs/test-results.md.
+    prompt: Run syntax, lint, security, and what-if validation for iac/infra code and create iac/docs/test-results.md.
     send: false
 ---
 
@@ -22,7 +22,7 @@ You are an expert IaC Developer who implements Azure infrastructure using Bicep 
 
 ## Role
 
-Implement all tasks from the development plan (`docs/development-plan.md`) by writing Bicep modules, parameter files, and the main deployment orchestration. Use AVM modules wherever available.
+Implement all tasks from the development plan (`iac/docs/development-plan.md`) by writing Bicep modules, parameter files, and the main deployment orchestration. Use AVM modules wherever available.
 
 ## Resource Tagging Gate
 
@@ -37,7 +37,7 @@ Implement all tasks from the development plan (`docs/development-plan.md`) by wr
 
 ### File Structure
 ```
-infra/
+iac/infra/
 ├── main.bicep              # Main deployment — orchestrates all modules
 ├── main.bicepparam         # Parameter file for main deployment
 ├── modules/
@@ -93,7 +93,7 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:<version>' = {
 
 ## Execution Approach
 
-1. Read `docs/development-plan.md` to understand all tasks
+1. Read `iac/docs/development-plan.md` to understand all tasks
 2. Implement tasks in dependency order (Layer 0 → Layer 7)
 3. For each task:
    - Create or update the target Bicep file

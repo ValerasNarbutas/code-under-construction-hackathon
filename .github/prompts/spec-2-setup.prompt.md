@@ -11,6 +11,7 @@ Initialize your spec-driven project with your chosen tooling.
 
 ### Option A: Spec Kit
 ```bash
+cd spec-driven
 specify init <your-app-name> --ai copilot --no-git
 ```
 
@@ -23,6 +24,7 @@ Then use these commands:
 
 ### Option B: OpenSpec
 ```bash
+cd spec-driven
 openspec init
 ```
 

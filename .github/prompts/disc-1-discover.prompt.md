@@ -26,7 +26,7 @@ Scan and inventory the complete environment including:
 
 ## Expected Output
 
-Create `docs/discovery-inventory.md` containing:
+Create `discovery/docs/discovery-inventory.md` containing:
 1. Discovery summary with subscription details and scan timestamp
 2. Resource group overview table
 3. Detailed resource inventory (per resource group) with name, type, SKU, location, tags, key configs

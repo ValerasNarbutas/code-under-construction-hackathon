@@ -5,7 +5,7 @@ description: 'Create a development plan from the architecture, split into ordere
 
 # Step 3: Create Development Plan
 
-Create a detailed development plan based on the architecture in `docs/architecture.md` and review findings in `docs/architecture-review.md`.
+Create a detailed development plan based on the architecture in `iac/docs/architecture.md` and review findings in `iac/docs/architecture-review.md`.
 
 ## Planning Requirements
 
@@ -17,7 +17,7 @@ Create a detailed development plan based on the architecture in `docs/architectu
 
 ## Expected Output
 
-Create `docs/development-plan.md` containing:
+Create `iac/docs/development-plan.md` containing:
 1. Overview with total task count
 2. Dependency graph (Mermaid diagram)
 3. Tasks grouped by implementation layer (networking → data → compute → security → monitoring → CI/CD → testing)

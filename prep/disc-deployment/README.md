@@ -1,1 +1,0 @@
-The deployment script for the discovery environment.

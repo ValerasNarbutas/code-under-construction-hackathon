@@ -110,7 +110,7 @@ Create a test report showing:
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: './spec-driven/tests',
   timeout: 30000,
   use: {
     baseURL: 'http://localhost:3000',

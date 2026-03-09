@@ -17,7 +17,7 @@ tools:
 handoffs:
   - label: Review Migration Architecture
     agent: reviewer
-    prompt: Review the migration target architecture in docs/migration-plan.md against WAF/CAF principles and update docs/architecture-review.md.
+    prompt: Review the migration target architecture in discovery/docs/migration-plan.md against WAF/CAF principles and update discovery/docs/architecture-review.md.
     send: false
 ---
 
@@ -27,7 +27,7 @@ You are an expert Azure PaaS Migration Architect who designs migration plans to 
 
 ## Role
 
-Using the discovery report (`docs/discovery-report.md`) and WAF assessment (`docs/waf-assessment.md`), design a comprehensive migration plan that transitions the environment to Azure PaaS services. Include a target-state architecture with Mermaid diagrams, phased migration roadmap, risk assessment, and cost comparison.
+Using the discovery report (`discovery/docs/discovery-report.md`) and WAF assessment (`discovery/docs/waf-assessment.md`), design a comprehensive migration plan that transitions the environment to Azure PaaS services. Include a target-state architecture with Mermaid diagrams, phased migration roadmap, risk assessment, and cost comparison.
 
 ## Azure Authentication Gate
 
@@ -147,7 +147,7 @@ Identify migration risks:
 
 ## Output Format
 
-Generate `docs/migration-plan.md` containing:
+Generate `discovery/docs/migration-plan.md` containing:
 
 1. **Migration Summary** — Current state overview, target state vision, expected benefits
 2. **Current-State Architecture** — Mermaid diagram of the discovered environment (from report)

@@ -16,7 +16,7 @@ handoffs:
     send: false
   - label: Deploy to Azure
     agent: deployer
-    prompt: Deploy validated infrastructure with infra/main.bicep and infra/main.bicepparam, then verify deployment health.
+    prompt: Deploy validated infrastructure with iac/infra/main.bicep and iac/infra/main.bicepparam, then verify deployment health.
     send: false
 ---
 
@@ -47,10 +47,10 @@ Run Bicep build on all module files to check for syntax errors:
 
 ```bash
 # Build each module individually
-az bicep build --file infra/modules/networking.bicep
-az bicep build --file infra/modules/database.bicep
-az bicep build --file infra/modules/webapp.bicep
-az bicep build --file infra/main.bicep
+az bicep build --file iac/infra/modules/networking.bicep
+az bicep build --file iac/infra/modules/database.bicep
+az bicep build --file iac/infra/modules/webapp.bicep
+az bicep build --file iac/infra/main.bicep
 ```
 
 For Terraform:
@@ -66,7 +66,7 @@ Check for best practice violations and warnings:
 ```bash
 # Bicep linter runs automatically with bicep build
 # Check output for warnings, not just errors
-az bicep build --file infra/main.bicep 2>&1
+az bicep build --file iac/infra/main.bicep 2>&1
 ```
 
 ### Stage 3: What-If Deployment (requires Azure connection)
@@ -75,8 +75,8 @@ Preview what changes would be made:
 ```bash
 az deployment group what-if \
   --resource-group rg-todo-dev-westeurope \
-  --template-file infra/main.bicep \
-  --parameters infra/main.bicepparam
+  --template-file iac/infra/main.bicep \
+  --parameters iac/infra/main.bicepparam
 ```
 
 For Terraform:
@@ -108,7 +108,7 @@ When errors are found:
 
 ## Output
 
-After all tests pass, create `docs/test-results.md` containing:
+After all tests pass, create `iac/docs/test-results.md` containing:
 
 1. **Test Summary** — Pass/fail status for each stage
 2. **Issues Found & Fixed** — Table of issues discovered and how they were resolved
