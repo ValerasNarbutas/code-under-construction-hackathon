@@ -105,6 +105,15 @@ test('user can create a new todo item', async ({ page }) => {
 ```
 
 ### Phase 7: Deploy
+
+**Azure Authentication Gate — MANDATORY before deploying.**
+
+1. Run `az account show --query "{name:name, id:id, tenantId:tenantId}" -o table` to check login status.
+2. If not logged in, ask the user to run `az login` and wait for them to complete it.
+3. Display the current **subscription name**, **subscription ID**, and **tenant ID** to the user.
+4. **Ask the user to explicitly confirm** that the displayed subscription and tenant are correct before proceeding.
+5. Do NOT deploy anything until the user confirms.
+
 Guide deployment to Azure using Azure MCP:
 - **Static frontend** → Azure Static Web Apps
 - **Full-stack** → Azure App Service or Container Apps
