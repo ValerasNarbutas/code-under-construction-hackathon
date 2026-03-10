@@ -50,31 +50,6 @@
         "description": "Administrator password for virtual machines."
       }
     },
-    "sqlAdminLogin": {
-      "type": "string",
-      "defaultValue": "sqladminuser",
-      "metadata": {
-        "description": "SQL Server administrator login name."
-      }
-    },
-    "aadAdminLogin": {
-      "type": "string",
-      "metadata": {
-        "description": "Microsoft Entra administrator UPN for Azure SQL."
-      }
-    },
-    "aadAdminObjectId": {
-      "type": "string",
-      "metadata": {
-        "description": "Object ID for the Microsoft Entra administrator."
-      }
-    },
-    "sqlAdminPassword": {
-      "type": "secureString",
-      "metadata": {
-        "description": "SQL Server administrator password."
-      }
-    },
     "webVmCount": {
       "type": "int",
       "defaultValue": 2,
@@ -183,8 +158,12 @@
     "networkWatcherFlowLogsStorageName": "[toLower(concat('nwfl', uniqueString(resourceGroup().id)))]",
     "appSqlUamiName": "[concat(parameters('prefix'), '-app-sql-uami')]",
     "commonTags": {
-      "Usecase": "AgenticDiscovery",
-      "ExistingInfra": "yes"
+      "usecase": "agentic-discovery",
+      "existinginfra": "yes",
+      "environment": "dev",
+      "workload": "agentic-discovery",
+      "owner": "tbd-owner",
+      "costcenter": "tbd-cost-center"
     }
   },
   "resources": [
@@ -916,6 +895,12 @@
             "properties": {
               "port": 80
             }
+          },
+          {
+            "name": "httpsPort",
+            "properties": {
+              "port": 443
+            }
           }
         ],
         "backendAddressPools": [
@@ -1303,8 +1288,8 @@
         "features": {
           "enableLogAccessUsingOnlyResourcePermissions": true
         },
-        "publicNetworkAccessForIngestion": "Enabled",
-        "publicNetworkAccessForQuery": "Enabled"
+        "publicNetworkAccessForIngestion": "Disabled",
+        "publicNetworkAccessForQuery": "Disabled"
       },
       "tags": "[variables('commonTags')]"
     },
@@ -2027,7 +2012,7 @@
     },
     {
       "type": "Microsoft.Sql/servers",
-      "apiVersion": "2022-08-01-preview",
+      "apiVersion": "2021-11-01",
       "name": "[variables('sqlServerName')]",
       "location": "[parameters('location')]",
       "properties": {
@@ -2049,7 +2034,7 @@
     },
     {
       "type": "Microsoft.Sql/servers/databases",
-      "apiVersion": "2022-08-01-preview",
+      "apiVersion": "2021-11-01",
       "name": "[concat(variables('sqlServerName'), '/', variables('sqlDbName'))]",
       "location": "[parameters('location')]",
       "sku": {

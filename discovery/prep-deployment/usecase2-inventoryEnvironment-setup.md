@@ -68,9 +68,13 @@ This environment deploys a hub-and-spoke Azure topology for a 3-tier inventory a
 - SQL security alert policy (`Default`) enabled.
 
 ## Tagging Strategy
-- Common tags are defined in `variables.commonTags`:
-  - `Usecase=AgenticDiscovery`
-  - `ExistingInfra=yes`
+- Common tags are defined in `variables.commonTags` following CAF lowercase conventions:
+  - `usecase=agentic-discovery`
+  - `existinginfra=yes`
+  - `environment=dev`
+  - `workload=agentic-discovery`
+  - `owner=tbd-owner`
+  - `costcenter=tbd-cost-center`
 - Tags are applied to all major tag-capable resources in the template.
 - Resource group tags are applied during deployment using `Microsoft.Resources/tags` with resource name `default`.
 
@@ -92,22 +96,24 @@ Example encoded template URI format:
 - Target subscription selected.
 - Resource group created (example: `rg-usecase2-inventory`).
 - Parameter values provided for:
-  - `adminPassword`
-  - `sqlAdminPassword` (kept in parameters file; not used by the managed-identity SQL flow)
+  - `adminPassword` (pass securely at deploy time or via Key Vault reference; do not store in the parameters file)
 
 ## Deploy
 ```powershell
-$tpl = "c:\Users\bramboer\OneDrive - Microsoft\Documents\STU\usecase2-inventoryEnvironment.json"
-$par = "c:\Users\bramboer\OneDrive - Microsoft\Documents\STU\usecase2-inventoryEnvironment.parameters.json"
-az account set --subscription 3c88f7fc-380e-438f-9625-a31542cc5797
+$tpl = "<REPO_ROOT>/discovery/prep-deployment/usecase2-inventoryEnvironment.json"
+$par = "<REPO_ROOT>/discovery/prep-deployment/usecase2-inventoryEnvironment.parameters.json"
+az account set --subscription <YOUR_SUBSCRIPTION_ID>
 az deployment group create \
   --resource-group rg-usecase2-agenticdiscovery \
   --template-file $tpl \
-  --parameters @$par
+  --parameters @$par \
+  --parameters adminPassword='<YOUR_ADMIN_PASSWORD>'
 ```
 
+> **Note:** If `enableNsgFlowLogs` is set to `true`, the template targets the `NetworkWatcherRG` resource group via a nested cross-resource-group deployment. This requires subscription-scope deployment (`az deployment sub create`) and appropriate permissions. Leave `enableNsgFlowLogs` at its default value of `false` for resource-group scope deployment.
+
 ## Validation Checks
-- Confirm AGW front end serves web content over HTTP.
+- Confirm AGW front end serves web content over **HTTPS** with a valid TLS certificate (configure an HTTPS listener with a certificate; HTTP should redirect to HTTPS).
 - Confirm app tier responds through ILB (`10.110.2.100:8080`).
 - Confirm app tier can reach SQL over private endpoint (`1433`).
 - Confirm app tier page shows DB row values (for example `ItemId=1001;Name=Widget;Qty=42`).
@@ -125,7 +131,7 @@ az deployment group create \
 Defender pricing resources are subscription-scope objects and should be applied outside this resource-group template.
 
 ```powershell
-az account set --subscription 3c88f7fc-380e-438f-9625-a31542cc5797
-az resource create --id "/subscriptions/3c88f7fc-380e-438f-9625-a31542cc5797/providers/Microsoft.Security/pricings/VirtualMachines" --api-version 2024-01-01 --properties '{"pricingTier":"Standard"}'
-az resource create --id "/subscriptions/3c88f7fc-380e-438f-9625-a31542cc5797/providers/Microsoft.Security/pricings/SqlServers" --api-version 2024-01-01 --properties '{"pricingTier":"Standard"}'
+az account set --subscription <YOUR_SUBSCRIPTION_ID>
+az resource create --id "/subscriptions/<YOUR_SUBSCRIPTION_ID>/providers/Microsoft.Security/pricings/VirtualMachines" --api-version 2024-01-01 --properties '{"pricingTier":"Standard"}'
+az resource create --id "/subscriptions/<YOUR_SUBSCRIPTION_ID>/providers/Microsoft.Security/pricings/SqlServers" --api-version 2024-01-01 --properties '{"pricingTier":"Standard"}'
 ```
