@@ -12,19 +12,7 @@
       "value": "azureadmin"
     },
     "adminPassword": {
-      "value": "ReplaceWithAStrongVMAdminPassword!123"
-    },
-    "sqlAdminLogin": {
-      "value": "sqladminuser"
-    },
-    "aadAdminLogin": {
-      "value": "bramboer_microsoft.com#EXT#@MngEnvMCAP042089.onmicrosoft.com"
-    },
-    "aadAdminObjectId": {
-      "value": "15d89dfd-9379-4f2c-bba0-d5ce6424dbc8"
-    },
-    "sqlAdminPassword": {
-      "value": "ReplaceWithAStrongSqlAdminPassword!123"
+      "value": ""
     },
     "webVmCount": {
       "value": 2
