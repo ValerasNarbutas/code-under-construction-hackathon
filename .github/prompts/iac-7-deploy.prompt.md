@@ -10,7 +10,7 @@ Deploy the complete infrastructure solution to Azure.
 ## Deployment Steps
 
 1. **Authenticate** — Verify Azure CLI login and correct subscription
-2. **Create Resource Group** — `rg-todo-dev-westeurope` in West Europe
+2. **Create Resource Group** — `rg-todo-dev-norwayeast` in Norway East
 3. **What-If Preview** — Run what-if deployment to review changes
 4. **Deploy** — Execute the Bicep deployment
 5. **Verify** — Confirm all resources are created and healthy
@@ -18,8 +18,8 @@ Deploy the complete infrastructure solution to Azure.
 
 ## Configuration
 
-- **Resource Group**: `rg-todo-dev-westeurope`
-- **Location**: `westeurope`
+- **Resource Group**: `rg-todo-dev-norwayeast`
+- **Location**: `norwayeast`
 - **Template**: `iac/infra/main.bicep`
 - **Parameters**: `iac/infra/main.bicepparam`
 
