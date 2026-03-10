@@ -8,11 +8,81 @@ Design, build, and execute your own **spec-driven agentic workflow** — a set o
 
 ## Prerequisites
 
-- Node.js 20+ (for OpenSpec and Playwright)
-- Python 3.12+ with uv (for Spec Kit)
-- VS Code with GitHub Copilot (or Codespaces)
+### Node.js 20+ (for OpenSpec and Playwright)
 
-### Azure Login (Required for Deployment)
+Download from [https://nodejs.org](https://nodejs.org) or install via a package manager:
+
+```bash
+# macOS (Homebrew)
+brew install node
+
+# Windows (winget)
+winget install OpenJS.NodeJS.LTS
+
+# Linux (nvm — recommended)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install 20
+```
+
+Verify: `node --version` (should show v20+)
+
+### Python 3.12+ with uv (for Spec Kit)
+
+Install Python from [https://www.python.org/downloads/](https://www.python.org/downloads/) or via a package manager:
+
+```bash
+# macOS (Homebrew)
+brew install python@3.12
+
+# Windows (winget)
+winget install Python.Python.3.12
+```
+
+Then install **uv** (fast Python package manager):
+
+```bash
+# macOS / Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Verify: `python3 --version` (should show 3.12+) and `uv --version`
+
+> **uv docs**: [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/)
+
+### VS Code with GitHub Copilot
+
+- Download VS Code: [https://code.visualstudio.com](https://code.visualstudio.com)
+- Install the **GitHub Copilot** extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+- Or use **GitHub Codespaces** (no local install needed)
+
+### Playwright (for E2E testing)
+
+The Playwright **MCP server** is already configured in `.vscode/mcp.json` and bundles its own browser — no extra setup needed for that.
+
+However, to run Playwright **E2E test suites** from the terminal (Step 5 of the workflow), you need to install the test runner and its browsers separately:
+
+```bash
+npm init playwright@latest   # scaffolds config + test folder
+npx playwright install --with-deps msedge
+```
+
+### Azure CLI (Required for Deployment)
+
+Install the Azure CLI from [https://learn.microsoft.com/cli/azure/install-azure-cli](https://learn.microsoft.com/cli/azure/install-azure-cli) or:
+
+```bash
+# macOS (Homebrew)
+brew install azure-cli
+
+# Windows (winget)
+winget install Microsoft.AzureCLI
+
+# Linux (script)
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
 
 If you plan to deploy your app to Azure, log in first using the credentials provided by the hackathon coaches:
 

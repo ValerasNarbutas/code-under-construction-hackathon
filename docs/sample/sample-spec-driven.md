@@ -24,11 +24,81 @@
 
 ## Prerequisites
 
-Before starting, you need:
-- [ ] Node.js 20+ installed (for OpenSpec and Playwright)
-- [ ] Python 3.12+ with uv installed (for Spec Kit)
-- [ ] Playwright installed (`npx playwright install --with-deps chromium`)
-- [ ] Azure CLI authenticated — **log in using credentials from the hackathon coaches**:
+Before starting, ensure you have the following installed:
+
+### Node.js 20+ (for OpenSpec and Playwright)
+
+Download from [https://nodejs.org](https://nodejs.org) or install via a package manager:
+
+```bash
+# macOS (Homebrew)
+brew install node
+
+# Windows (winget)
+winget install OpenJS.NodeJS.LTS
+
+# Linux (nvm — recommended)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install 20
+```
+
+Verify: `node --version` (should show v20+)
+
+### Python 3.12+ with uv (for Spec Kit)
+
+Install Python from [https://www.python.org/downloads/](https://www.python.org/downloads/) or:
+
+```bash
+# macOS (Homebrew)
+brew install python@3.12
+
+# Windows (winget)
+winget install Python.Python.3.12
+```
+
+Then install **uv** (fast Python package manager):
+
+```bash
+# macOS / Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Verify: `python3 --version` (should show 3.12+) and `uv --version`
+
+> **uv docs**: [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/)
+
+### Playwright (for E2E testing)
+
+The Playwright **MCP server** is already configured in `.vscode/mcp.json` and bundles its own browser — no extra setup needed for that.
+
+To run Playwright **E2E test suites** from the terminal (Step 5), install the test runner and its browsers:
+
+```bash
+npm init playwright@latest   # scaffolds config + test folder
+npx playwright install --with-deps msedge
+```
+
+### Azure CLI (for deployment)
+
+Install from [https://learn.microsoft.com/cli/azure/install-azure-cli](https://learn.microsoft.com/cli/azure/install-azure-cli) or:
+
+```bash
+# macOS (Homebrew)
+brew install azure-cli
+
+# Windows (winget)
+winget install Microsoft.AzureCLI
+
+# Linux (script)
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
+Log in using credentials from the hackathon coaches:
+
+- [ ] Azure CLI authenticated:
   ```bash
   az login
   az account show --query "{name:name, id:id, tenantId:tenantId}" -o table
