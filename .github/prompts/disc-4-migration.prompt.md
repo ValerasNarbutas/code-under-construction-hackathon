@@ -11,6 +11,7 @@ Design a migration plan to modernize the discovered environment from IaaS to Azu
 
 - Read `discovery/docs/discovery-report.md` — executive report with current architecture
 - Read `discovery/docs/waf-assessment.md` — compliance gaps to address in target design
+- Read `discovery/docs/discovery-inventory.md` — detailed inventory of discovered resources and SKUs
 
 ## Migration Plan Requirements
 
