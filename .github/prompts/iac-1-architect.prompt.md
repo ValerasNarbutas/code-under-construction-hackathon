@@ -18,9 +18,9 @@ Create a greenfield infrastructure architecture for the following Azure workload
 ## Constraints
 
 - Use **Azure Verified Modules (AVM)** from the official Bicep public registry for all resources
-- Follow **CAF naming conventions** (e.g., `app-todo-dev-westeurope`, `sql-todo-dev-westeurope`)
+- Follow **CAF naming conventions** (e.g., `app-todo-dev-norwayeast`, `sql-todo-dev-norwayeast`)
 - Apply **WAF principles** across all 5 pillars (Reliability, Security, Cost, Operations, Performance)
-- Target region: **West Europe** (or parameterized)
+- Target region: **Norway East** (or parameterized)
 - Target environment: **dev** (with prod considerations documented)
 - Use **Managed Identity** for App-to-DB authentication (no passwords in code)
 

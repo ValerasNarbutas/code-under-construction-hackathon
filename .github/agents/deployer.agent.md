@@ -85,7 +85,7 @@ Use the resource group name provided by the user in the Resource Group Name Gate
 ```bash
 az group create \
   --name <resource-group-name> \
-  --location westeurope \
+  --location norwayeast \
   --tags environment=dev workload=todo owner=hackathon costCenter=hackathon
 ```
 
@@ -118,19 +118,19 @@ az resource list \
 # Verify Web App is running
 az webapp show \
   --resource-group <resource-group-name> \
-  --name app-todo-dev-westeurope \
+  --name app-todo-dev-norwayeast \
   --query "state" --output tsv
 
 # Verify SQL Server private endpoint
 az network private-endpoint show \
   --resource-group <resource-group-name> \
-  --name pep-sql-dev-westeurope \
+  --name pep-sql-dev-norwayeast \
   --query "privateLinkServiceConnections[0].privateLinkServiceConnectionState.status" --output tsv
 
 # Verify SQL public access is disabled
 az sql server show \
   --resource-group <resource-group-name> \
-  --name sql-todo-dev-westeurope \
+  --name sql-todo-dev-norwayeast \
   --query "publicNetworkAccess" --output tsv
 ```
 
