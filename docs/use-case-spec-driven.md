@@ -4,7 +4,7 @@ Build a greenfield web application using specification-first methodology with AI
 
 ## Objective
 
-Design, build, and execute your own **spec-driven agentic workflow** — a set of custom agents, prompts, skills, and MCP server configurations — to brainstorm, specify, implement, test, and deploy a web application. Your team decides WHAT to build, chooses the spec-driven tooling, and defines HOW the AI agents orchestrate the process.
+Use a **spec-driven workflow** to brainstorm, specify, implement, test, and deploy a web application. Your team decides WHAT to build, chooses between **Spec Kit** or **OpenSpec** as spec-driven tooling, and follows this manual step by step. All work happens in a **separate empty folder** outside this repo.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ nvm install 20
 
 Verify: `node --version` (should show v20+)
 
-### Python 3.12+ with uv (for Spec Kit)
+### Python 3.12+ with uv (for Spec Kit only)
 
 Install Python from [https://www.python.org/downloads/](https://www.python.org/downloads/) or via a package manager:
 
@@ -60,14 +60,7 @@ Verify: `python3 --version` (should show 3.12+) and `uv --version`
 
 ### Playwright (for E2E testing)
 
-The Playwright **MCP server** is already configured in `.vscode/mcp.json` and bundles its own browser — no extra setup needed for that.
-
-However, to run Playwright **E2E test suites** from the terminal (Step 5 of the workflow), you need to install the test runner and its browsers separately:
-
-```bash
-npm init playwright@latest   # scaffolds config + test folder
-npx playwright install --with-deps msedge
-```
+To run Playwright **E2E test suites** from the terminal, install the test runner and its browsers in your project folder (done in Step 5).
 
 ### Azure CLI (Required for Deployment)
 
@@ -100,174 +93,325 @@ az account show --query "{name:name, id:id, tenantId:tenantId}" -o table
 
 ---
 
-## Participant Guide
+## Step 0: Create a New Project Folder
 
-### Phase 1: Define What You Want to Build
+All work for this use case happens in a **separate empty folder** — not inside this hackathon repo.
 
-Answer these questions as a team:
+**macOS / Linux**:
+```bash
+mkdir ~/my-spec-app && cd ~/my-spec-app
+code .
+```
 
-- [ ] **What application are you building?** (e.g., a task tracker, a recipe app, a dashboard)
-- [ ] **Who are the users?** Define 3-5 user stories with acceptance criteria
-- [ ] **What features are in scope for the MVP?** Keep it focused (3-5 core features)
-- [ ] **What tech stack will you use?** (any web framework — React, Next.js, Vue, plain HTML/JS, etc.)
-- [ ] **What data model do you need?** (entities, relationships, persistence)
+**Windows (PowerShell)**:
+```powershell
+mkdir $HOME\my-spec-app; cd $HOME\my-spec-app
+code .
+```
 
-### Phase 2: Define What You Need (Tools & MCP Servers)
+This opens a fresh VS Code window. All remaining steps happen in this new workspace.
 
-Think about which tools and spec-driven methodology you'll use:
+---
 
-- [ ] **Which spec-driven tool will you use?**
-  - **Spec Kit** (Python-based): `specify init --here --ai copilot`
-    - Commands: `/speckit.constitution`, `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, `/speckit.implement`
-  - **OpenSpec** (Node.js-based): `openspec init`
-    - Commands: `/opsx:propose <idea>`, `/opsx:apply`, `/opsx:archive`
-- [ ] **Which MCP servers do you need?**
-  - Playwright MCP — for running E2E tests against your app
-  - Azure MCP — for deploying to Azure (App Service, Static Web Apps, etc.)
-- [ ] **Which skills do you need?**
-  - The `find-skills` skill is already installed — use it to discover and install skills
-  - Run `npx skills find <domain>` to discover
-  - Install any you need with `npx skills add <owner/repo@skill>`
-- [ ] **Configure your MCP servers** in `.vscode/mcp.json`
+## Step 1: Choose Your Spec-Driven Tool
 
-> **Important**: Run both Spec Kit and OpenSpec init from the **repo root**. They install prompts and agents that must be registered at the workspace root to be recognized.
+Pick **one** of the two options below. Both follow the same overall workflow but use different commands.
 
-### Phase 3: Execute the Spec-Driven Workflow (No Custom Agents/Prompts Yet)
+### Option A: Spec Kit (Python-based)
 
-After `spec-2-setup`, use the Spec Kit or OpenSpec commands for specify → implement → test → deploy.
-Do **not** create custom prompts or custom agents unless you truly need to extend the workflow beyond those steps.
+**Terminal**:
+```bash
+specify init --here --ai copilot
+```
 
-Run the workflow in order and verify each step:
+This creates a `specs/` folder and registers Spec Kit commands in Copilot Chat. You'll use these slash commands later:
 
-1. **Brainstorm** — Run the brainstorm prompt. Verify user stories and acceptance criteria are defined
-2. **Setup** — Initialize your spec-driven tool and discover relevant skills
-3. **Specify** — Run your spec tool commands. Verify specs cover all core features
-4. **Implement** — Run your spec tool commands. Verify the app runs locally
-5. **Test** — Write and run Playwright E2E tests. Verify each user story
-6. **Deploy** — Deploy using Azure MCP. Verify the app is live
+| Command | Purpose |
+|---|---|
+| `/speckit.constitution` | Set project constitution (goals, constraints) |
+| `/speckit.specify` | Write feature specifications |
+| `/speckit.plan` | Generate an implementation plan from specs |
+| `/speckit.tasks` | List implementation tasks |
+| `/speckit.implement` | Generate code from specs |
 
-### Phase 4: Verify & Iterate
+### Option B: OpenSpec (Node.js-based)
 
-Review the quality of your outputs:
+**Terminal**:
+```bash
+npm install -g @fission-ai/openspec@latest
+openspec init
+```
 
-- [ ] Does the app match the user stories and acceptance criteria?
-- [ ] Do all Playwright E2E tests pass?
-- [ ] Is the app running locally at `http://localhost:3000` (or similar)?
-- [ ] Is the app deployed and accessible on Azure?
-- [ ] Can you add a new feature by running the specify → implement → test cycle again?
+This creates an `openspec/` folder and registers OpenSpec commands in Copilot Chat. You'll use these slash commands later:
+
+| Command | Purpose |
+|---|---|
+| `/opsx:propose <idea>` | Propose a new feature |
+| `/opsx:apply` | Implement the current proposal |
+| `/opsx:archive` | Archive completed changes |
+
+**Verify**: Confirm your chosen tool initialized successfully (config files present in the project folder).
+
+---
+
+## Step 2: Brainstorm Your App Idea
+
+Open **Copilot Chat** and paste the following to brainstorm with Copilot:
+
+**Copilot Chat**:
+```
+I'm starting a new web application project using spec-driven development.
+Help me define the app. I need:
+1. A clear app name and one-liner description
+2. 3-5 user stories in "As a [role], I want [action] so that [benefit]" format
+3. Acceptance criteria for each user story
+4. A basic data model (entities and relationships)
+5. Recommended tech stack (keep it simple — e.g., React, Vue, or plain HTML/JS)
+
+My app idea: <DESCRIBE YOUR IDEA HERE>
+```
+
+Replace `<DESCRIBE YOUR IDEA HERE>` with your team's idea — for example:
+- A Kanban-style task board with drag-and-drop
+- An expense tracker with categories and charts
+- A recipe book with search and ratings
+- A habit tracker with streaks
+
+**Verify before continuing**:
+- [ ] App idea is defined with a clear purpose
+- [ ] 3-5 user stories with acceptance criteria
+- [ ] Data model covers all features
+- [ ] Scope is realistic for a hackathon (not too ambitious)
+
+---
+
+## Step 3: Write Your Specifications
+
+Use your chosen tool's commands to capture what you brainstormed as formal specs.
+
+### If using Spec Kit
+
+**Copilot Chat** — set the project constitution first:
+```
+/speckit.constitution
+Project: <YOUR APP NAME>
+Goal: <ONE-LINE DESCRIPTION>
+Tech stack: <e.g., React with TypeScript>
+Constraints: Keep it simple, local storage for persistence, no backend required for MVP
+```
+
+**Copilot Chat** — then write specs for each feature:
+```
+/speckit.specify
+Write specifications for the following features:
+1. <Feature 1 from your user stories>
+2. <Feature 2 from your user stories>
+3. <Feature 3 from your user stories>
+Each spec should include: description, acceptance criteria, data model, and edge cases.
+Describe WHAT to build, not HOW.
+```
+
+### If using OpenSpec
+
+**Copilot Chat** — propose each feature:
+```
+/opsx:propose "<Feature 1>: <brief description with acceptance criteria>"
+```
+
+Repeat for each feature:
+```
+/opsx:propose "<Feature 2>: <brief description with acceptance criteria>"
+```
+
+**Key principle**: Specify **WHAT** to build, not **HOW**. Focus on behavior, not implementation details.
+
+**Verify before continuing**:
+- [ ] Specs exist for all 3-5 core features
+- [ ] Each spec has clear acceptance criteria
+- [ ] Specs describe WHAT, not HOW (no implementation details)
+- [ ] Edge cases are covered (empty input, max length, etc.)
+
+---
+
+## Step 4: Generate the Implementation
+
+### If using Spec Kit
+
+**Copilot Chat**:
+```
+/speckit.plan
+```
+Review the plan, then:
+```
+/speckit.tasks
+```
+Review the tasks, then:
+```
+/speckit.implement
+```
+
+### If using OpenSpec
+
+**Copilot Chat**:
+```
+/opsx:apply
+```
+
+**Start and verify locally**:
+
+**Terminal**:
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000` (or whichever port is shown) and manually test each user story.
+
+**Verify before continuing**:
+- [ ] App starts without errors
+- [ ] Each user story's acceptance criteria work when tested manually
+- [ ] Data model matches what was specified
+- [ ] UI is usable (not just functional)
+
+---
+
+## Step 5: Write and Run E2E Tests
+
+**Terminal** — initialize Playwright in your project:
+```bash
+npm init playwright@latest
+npx playwright install --with-deps msedge
+```
+
+**Copilot Chat** — ask Copilot to generate tests for your user stories:
+```
+Write Playwright E2E tests for my application. Create one test file per feature.
+My user stories and acceptance criteria are:
+
+1. <User Story 1 + acceptance criteria>
+2. <User Story 2 + acceptance criteria>
+3. <User Story 3 + acceptance criteria>
+
+Put tests in the tests/ folder. Use data-testid attributes for selectors.
+Make sure to test happy paths, validation, and edge cases.
+```
+
+**Terminal** — run the tests:
+```bash
+npx playwright test              # Run all tests headless
+npx playwright test --ui         # Visual test runner
+npx playwright show-report       # View HTML report
+```
+
+**Verify before continuing**:
+- [ ] Test files exist in `tests/` directory
+- [ ] All tests pass (`npx playwright test` shows green)
+- [ ] Each user story has at least one test
+- [ ] Edge cases are tested (empty input, long text)
+
+---
+
+## Step 6: Deploy to Azure
+
+**Copilot Chat** — ask Copilot to help you deploy:
+```
+Deploy my web application to Azure. My app is a <SPA / full-stack app / static site>.
+Help me choose the best Azure service (Static Web Apps, App Service, or Container Apps)
+and give me the az CLI commands to deploy.
+Use resource group name: rg-<myapp>-dev-westeurope
+Use location: westeurope
+```
+
+**Example deployment (Static Web Apps)**:
+
+**macOS / Linux**:
+```bash
+npm run build
+az staticwebapp create \
+  --name <myapp> \
+  --resource-group rg-<myapp>-dev-westeurope \
+  --source ./dist \
+  --location westeurope
+```
+
+**Windows (PowerShell)**:
+```powershell
+npm run build
+az staticwebapp create `
+  --name <myapp> `
+  --resource-group rg-<myapp>-dev-westeurope `
+  --source ./dist `
+  --location westeurope
+```
+
+**Post-deployment verification**:
+- [ ] App is accessible at the Azure URL
+- [ ] All features work on the deployed version
+- [ ] Run Playwright tests against the deployed URL:
+  ```bash
+  # macOS / Linux
+  BASE_URL=https://your-app.azurestaticapps.net npx playwright test
+
+  # Windows (PowerShell)
+  $env:BASE_URL="https://your-app.azurestaticapps.net"; npx playwright test
+  ```
 
 ---
 
 ## Feature Expansion
 
-Add new features without git branches — use folder-based feature isolation:
+After the MVP is deployed, add new features using the same specify → implement → test cycle:
 
 ### Spec Kit
+
+**macOS / Linux**:
 ```bash
 export SPECIFY_FEATURE="new-feature-name"
-/speckit.specify    # Specs scoped to this feature
-/speckit.implement  # Implementation scoped to this feature
 ```
 
-### OpenSpec
+**Windows (PowerShell)**:
+```powershell
+$env:SPECIFY_FEATURE="new-feature-name"
 ```
-/opsx:propose "Description of the new feature"
+**Copilot Chat**:
+```
+/speckit.specify
+Write a spec for: <describe the new feature with acceptance criteria>
+```
+Then: `/speckit.implement` → write tests → deploy.
+
+### OpenSpec
+**Copilot Chat**:
+```
+/opsx:propose "<New feature description with acceptance criteria>"
 /opsx:apply
 ```
+Then: write tests → deploy.
 
 Each feature follows the same cycle: **specify → implement → test → deploy**
 
 ---
 
-## Copy/Paste Commands — Kanban Task Board (Drag-and-Drop)
-
-Use these ready-to-paste sequences in **Copilot Chat**. Run terminal commands from the **repo root**.
-
-### Spec Kit
-
-**Copilot Chat**:
-```
-spec-1-brainstorm
-We are building a Kanban-style task management app with drag-and-drop between columns.
-```
-
-**Terminal (repo root)**:
-```bash
-specify init --here --ai copilot
-npx skills find "kanban drag and drop"
-```
-
-**Copilot Chat**:
-```
-Use Spec Kit. Create specs for a Kanban board with Backlog, In Progress, and Done columns.
-Include drag-and-drop, task creation, editing, and persistence.
-Then run /speckit.specify, /speckit.plan, /speckit.tasks, and /speckit.implement.
-```
-
-### OpenSpec
-
-**Copilot Chat**:
-```
-spec-1-brainstorm
-We are building a Kanban-style task management app with drag-and-drop between columns.
-```
-
-**Terminal (repo root)**:
-```bash
-openspec init
-npx skills find "kanban drag and drop"
-```
-
-**Copilot Chat**:
-```
-Use OpenSpec. Propose and apply specs for a Kanban board with Backlog, In Progress, and Done columns.
-Include drag-and-drop, task creation, editing, and persistence.
-Then run /opsx:propose and /opsx:apply.
-```
-
----
-
 ## Expected File Structure
 
+After completing all steps, your project folder should look like:
+
 ```
-.github/
-├── agents/                 # 👈 Your custom agents
-│   ├── <your-agent>.agent.md
+my-spec-app/
+├── src/                        # Application source code
+│   ├── components/             # UI components
 │   └── ...
-├── instructions/           # 🤖 Auto-activating Copilot guidelines (pre-configured)
-│   ├── agents.instructions.md
-│   ├── prompt.instructions.md
-│   ├── agent-skills.instructions.md
-│   └── instructions.instructions.md
-├── prompts/                # 👈 Your reusable prompts
-│   ├── <your-prompt>.prompt.md
+├── tests/                      # Playwright E2E tests
+│   ├── feature1.spec.ts
 │   └── ...
-├── skills/                 # 👈 Your custom skills (if any)
+├── specs/                      # Specifications (Spec Kit)
 │   └── ...
-└── copilot-instructions.md # 👈 Workspace-wide context
-.vscode/
-└── mcp.json                # 👈 Your MCP server configuration
-src/                        # 👈 Your application source code
-tests/                      # 👈 Playwright E2E tests
-specs/                      # 👈 Specifications (Spec Kit or OpenSpec)
+├── openspec/                   # Specifications (OpenSpec — if chosen)
+│   └── changes/
+├── playwright.config.ts        # Playwright configuration
+├── package.json
+└── ...
 ```
-
----
-
-## Stuck? Check the Examples
-
-This repo includes a **complete reference implementation** showing one way to solve this use case:
-
-| What | Where | Purpose |
-|---|---|---|
-| Example agents | `.github/agents/spec-coach.agent.md` | See how a spec-driven agent is defined |
-| Example prompts | `.github/prompts/spec-1-brainstorm.prompt.md`, `spec-2-setup.prompt.md` | See the spec-driven prompts used in this guide |
-| Example skills | `.github/skills/spec-driven-guide/` | See how a spec methodology skill is documented |
-| Instruction files | `.github/instructions/` | Auto-loaded guidelines for writing agents, prompts, skills, and instructions |
-| Example MCP config | `.vscode/mcp.json` | See how Playwright and Azure MCP servers are configured |
-| Sample walkthrough | [docs/sample/spec-driven-example.md](sample/spec-driven-example.md) | See what a completed spec-driven workflow looks like |
-
-> **These are just examples** — your team should build your own agents, prompts, and workflow. Use the examples for inspiration when you get stuck.
 
 ---
 
@@ -278,4 +422,5 @@ This repo includes a **complete reference implementation** showing one way to so
 - **Test everything** — Write Playwright tests before adding new features
 - **Local first** — Get it working locally before deploying to Azure
 - **Iterate** — It's better to have 3 polished features than 10 broken ones
-- **Build agents incrementally** — Create one agent, test it, then build the next
+- **Use Copilot Chat freely** — Paste any prompt or question directly into the chat window
+- **Check the sample** — See [docs/sample/sample-spec-driven.md](sample/sample-spec-driven.md) for a complete Kanban board walkthrough with all commands pre-filled
