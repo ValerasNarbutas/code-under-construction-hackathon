@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "prefix": {
+      "value": "invuc2"
+    },
+    "location": {
+      "value": "norwayeast"
+    },
+    "adminUsername": {
+      "value": "azureadmin"
+    },
+    "adminPassword": {
+      "value": "ReplaceWithAStrongVMAdminPassword!123"
+    },
+    "sqlAdminLogin": {
+      "value": "sqladminuser"
+    },
+    "aadAdminLogin": {
+      "value": "bramboer_microsoft.com#EXT#@MngEnvMCAP042089.onmicrosoft.com"
+    },
+    "aadAdminObjectId": {
+      "value": "15d89dfd-9379-4f2c-bba0-d5ce6424dbc8"
+    },
+    "sqlAdminPassword": {
+      "value": "ReplaceWithAStrongSqlAdminPassword!123"
+    },
+    "webVmCount": {
+      "value": 2
+    },
+    "appVmCount": {
+      "value": 2
+    },
+    "vmSize": {
+      "value": "Standard_D2s_v5"
+    },
+    "webDeployPackageUri": {
+      "value": "https://github.com/Azure/azure-quickstart-templates/raw/master/quickstarts/microsoft.web/web-app-vm-dsc/WebApplication3.zip"
+    },
+    "dscModulesUrl": {
+      "value": "https://github.com/Azure/azure-quickstart-templates/raw/master/quickstarts/microsoft.web/web-app-vm-dsc/ConfigureWebServer.ps1.zip"
+    },
+    "configurationFunction": {
+      "value": "ConfigureWebServer.ps1\\Main"
+    }
+  }
+}
