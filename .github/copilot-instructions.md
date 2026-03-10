@@ -5,7 +5,7 @@
 This hackathon project offers **three use cases** for teams to choose from. Each use case leverages GitHub Copilot's custom agents, skills, and MCP servers to build, discover, or design Azure infrastructure and applications.
 
 ### Use Case 1: Infrastructure as Code (IaC) — Greenfield Deployment
-Build Azure infrastructure from scratch using **Bicep with Azure Verified Modules (AVM)** following **Cloud Adoption Framework (CAF)** and **Well-Architected Framework (WAF)** principles. Sequential agent workflow: architect → review → plan → implement → test → document → deploy.
+Build Azure infrastructure from scratch using **Bicep with Azure Verified Modules (AVM)** following **Cloud Adoption Framework (CAF)** and **Well-Architected Framework (WAF)** principles. Sequential agent workflow: architect → review → plan → implement → test → document → deploy → deploy app (sample only).
 
 ### Use Case 2: Agentic Discovery — Brownfield Assessment
 Discover and analyse a **pre-deployed Azure environment** using the Azure MCP server. Assess the environment against WAF and CAF using the Learn MCP server. Produce comprehensive reports with Mermaid architecture diagrams, gap analysis, and actionable recommendations. Optionally create a PaaS migration plan with cost assessment.
@@ -143,6 +143,12 @@ iac/                            # Use Case 1: IaC output
 │       ├── database.bicep      # SQL Server, SQL Database, Private Endpoint
 │       ├── webapp.bicep        # App Service Plan, Web App
 │       └── monitoring.bicep    # Log Analytics, App Insights (optional)
+├── app/                        # Sample Todo application (sample walkthrough only)
+│   ├── Program.cs              # App entry point, API endpoints
+│   ├── TodoApp.csproj          # Project file
+│   ├── Models/                 # Entity models
+│   ├── Data/                   # EF Core DbContext
+│   └── wwwroot/                # Static assets
 
 discovery/                      # Use Case 2: Discovery output
 └── docs/

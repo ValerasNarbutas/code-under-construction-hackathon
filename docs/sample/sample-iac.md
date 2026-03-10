@@ -8,15 +8,15 @@
 
 | Asset | Location | Purpose |
 |---|---|---|
-| **Agents** | `.github/agents/` | `@architect`, `@reviewer`, `@planner`, `@implementer`, `@tester`, `@documenter`, `@deployer` |
-| **Prompts** | `.github/prompts/` | `iac-1-architect` through `iac-7-deploy` (+ optional `iac-8`, `iac-9`) |
-| **Skills** | `.github/skills/` | `update-avm-modules-in-bicep`, `find-skills` |
+| **Agents** | `.github/agents/` | `@architect`, `@reviewer`, `@planner`, `@implementer`, `@tester`, `@documenter`, `@deployer`, `@frontend-dev` |
+| **Prompts** | `.github/prompts/` | `iac-1-architect` through `iac-7-deploy`, `iac-7.5-deploy-app` (+ optional `iac-8`, `iac-9`) |
+| **Skills** | `.github/skills/` | `update-avm-modules-in-bicep`, `find-skills`, `dotnet-ui` |
 | **MCP Servers** | `.vscode/mcp.json` | Azure MCP, Learn MCP, Bicep MCP (auto-enabled) |
 
 ## Agent Workflow
 
 ```
-@architect → @reviewer → @planner → @implementer → @tester → @documenter → @deployer
+@architect → @reviewer → @planner → @implementer → @tester → @documenter → @deployer → @frontend-dev
 ```
 
 ---
@@ -225,6 +225,50 @@ This invokes `@deployer` to deploy everything to Azure:
 
 ---
 
+## Step 7.5: Deploy a Sample Todo Application
+
+**Run prompt**: `iac-7.5-deploy-app`
+
+This invokes `@frontend-dev` to build and deploy a working Todo application to the existing Azure Web App, with data stored in the SQL Database via Managed Identity.
+
+> **Skill**: The `dotnet-ui` skill is used for .NET UI design patterns when building the Todo frontend.
+
+**What it does**:
+1. Scaffolds a .NET 8 ASP.NET Core Todo app under `iac/app/`
+2. Configures EF Core with the `SqlConnection` connection string (Managed Identity — no passwords)
+3. Creates API endpoints: `GET/POST/PUT/DELETE /api/todos`
+4. Builds a simple, clean Todo UI page
+5. Adds a `/health` endpoint (matches the Web App health check configuration)
+6. Publishes and deploys the app to Azure Web App via `az webapp deploy`
+7. Grants the Managed Identity SQL database roles (`db_datareader`, `db_datawriter`, `db_ddladmin`)
+8. Auto-migrates the database schema on startup via `Database.Migrate()`
+9. Verifies end-to-end: Todo UI loads, CRUD operations work, data persists in SQL
+
+**What it produces**:
+```
+iac/app/
+├── Program.cs              # App entry point, API endpoints, service config
+├── TodoApp.csproj          # Project file with EF Core + Azure.Identity
+├── Models/
+│   └── TodoItem.cs         # Todo entity (Id, Title, IsComplete, CreatedAt)
+├── Data/
+│   └── TodoDbContext.cs    # EF Core context for SQL
+└── wwwroot/                # Static assets (CSS, JS)
+```
+
+Plus a **live, working Todo application** on the deployed Azure Web App with data persisted in Azure SQL.
+
+**Verify after deployment**:
+- [ ] Web App serves the Todo application on HTTPS
+- [ ] Can create, read, update, and delete todo items
+- [ ] Data is persisted in Azure SQL Database
+- [ ] `/health` endpoint returns 200 OK
+- [ ] `/api/todos` returns JSON response
+- [ ] No passwords or secrets in application code
+- [ ] Managed Identity authentication is used for SQL
+
+---
+
 ## Optional Extensions
 
 ### Step 8: Add Resilience (`iac-8-extend-resilience`)
@@ -259,6 +303,14 @@ infra/
     ├── database.bicep
     ├── webapp.bicep
     └── monitoring.bicep
+app/
+├── Program.cs
+├── TodoApp.csproj
+├── Models/
+│   └── TodoItem.cs
+├── Data/
+│   └── TodoDbContext.cs
+└── wwwroot/
 docs/
 ├── architecture.md
 ├── architecture-review.md
@@ -269,4 +321,4 @@ docs/
 └── cost-estimation.md
 ```
 
-Plus a deployed Azure environment with all resources running and verified.
+Plus a deployed Azure environment with all resources running, verified, and a **working Todo application** demonstrating end-to-end connectivity.

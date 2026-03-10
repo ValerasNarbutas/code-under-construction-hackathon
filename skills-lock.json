@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "dotnet-ui": {
+      "source": "novotnyllc/dotnet-artisan",
+      "sourceType": "github",
+      "computedHash": "66819bcc2b601f20de665a5dfe12fd54cdb3d64718116748abdd7d4e174282e9"
+    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",

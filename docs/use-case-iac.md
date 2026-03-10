@@ -182,8 +182,6 @@ This repo includes a **complete reference implementation** showing one way to so
 | Example skills | `.github/skills/update-avm-modules-in-bicep/` | See how skills provide domain knowledge |
 | Instruction files | `.github/instructions/` | Auto-loaded guidelines for writing agents, prompts, skills, and instructions |
 | Example MCP config | `.vscode/mcp.json` | See how MCP servers are configured |
-| Sample architecture output | [docs/sample/README.md](sample/README.md) | See what a completed architecture document looks like |
-| Sample plan output | [docs/sample/development-plan-example.md](sample/development-plan-example.md) | See what a development plan looks like |
 
 > **These are just examples** — your team should build your own agents, prompts, and workflow. Use the examples for inspiration when you get stuck.
 
