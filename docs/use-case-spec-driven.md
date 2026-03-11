@@ -156,7 +156,7 @@ This creates an `openspec/` folder and registers OpenSpec commands in Copilot Ch
 
 ## Step 2: Brainstorm Your App Idea
 
-Open **Copilot Chat** and paste the following to brainstorm with Copilot:
+Open **Copilot Chat - Ask Mode** to refine and brainstorm on your idea, the more info you are able to produce in later stages, the better. 
 
 **Copilot Chat**:
 ```
@@ -247,7 +247,7 @@ Review the plan, then:
 ```
 Review the tasks, then:
 ```
-/speckit.implement
+/speckit.implement in this directory and do NOT DELETE excisting files from this folder.
 ```
 
 ### If using OpenSpec

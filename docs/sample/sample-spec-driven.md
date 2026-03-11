@@ -117,7 +117,7 @@ openspec init
 
 ## Step 2: Brainstorm — Define the Kanban Board
 
-Open **Copilot Chat** and paste:
+Open **Copilot Chat - Ask Mode** to refine and brainstorm on your idea, the more info you are able to produce in later stages, the better. This could be example output of your brainstorm and refinement.
 
 ```
 I'm starting a new web application project using spec-driven development.
@@ -271,7 +271,7 @@ Review the generated plan. Then:
 
 Review the task list. Then:
 ```
-/speckit.implement
+/speckit.implement in this directory and do NOT DELETE excisting files from this folder
 ```
 
 ### If using OpenSpec
